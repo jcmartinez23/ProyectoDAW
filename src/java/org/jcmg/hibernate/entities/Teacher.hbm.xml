@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 22, 2015 8:17:52 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="proyecto" name="org.jcmg.hibernate.entities.Teacher" optimistic-lock="version" table="teacher">
+    <id name="userId" type="int">
+      <column name="user_id"/>
+      <generator class="foreign">
+        <param name="property">user</param>
+      </generator>
+    </id>
+    <one-to-one class="org.jcmg.hibernate.entities.User" constrained="true" name="user"/>
+    <set fetch="select" inverse="true" lazy="true" name="groups" table="group">
+      <key>
+        <column name="teacher" not-null="true"/>
+      </key>
+      <one-to-many class="org.jcmg.hibernate.entities.Group"/>
+    </set>
+  </class>
+</hibernate-mapping>
