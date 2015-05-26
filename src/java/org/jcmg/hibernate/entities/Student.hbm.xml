@@ -1,32 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 22, 2015 8:17:52 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 26, 2015 7:20:30 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="proyecto" name="org.jcmg.hibernate.entities.Student" optimistic-lock="version" table="student">
-    <id name="userId" type="int">
-      <column name="user_id"/>
-      <generator class="foreign">
-        <param name="property">user</param>
-      </generator>
-    </id>
-    <many-to-one class="org.jcmg.hibernate.entities.Company" fetch="select" name="company">
-      <column length="9" name="company" not-null="true"/>
-    </many-to-one>
-    <many-to-one class="org.jcmg.hibernate.entities.Group" fetch="select" name="group">
-      <column name="group_id"/>
-    </many-to-one>
-    <one-to-one class="org.jcmg.hibernate.entities.User" constrained="true" name="user"/>
-    <set fetch="select" inverse="true" lazy="true" name="nonAttendances" table="non_attendance">
-      <key>
-        <column name="student_id" not-null="true"/>
-      </key>
-      <one-to-many class="org.jcmg.hibernate.entities.NonAttendance"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="studentTakesExams" table="student_takes_exam">
-      <key>
-        <column name="student_id" not-null="true"/>
-      </key>
-      <one-to-many class="org.jcmg.hibernate.entities.StudentTakesExam"/>
-    </set>
-  </class>
+    <class name="org.jcmg.hibernate.entities.Student" table="student" catalog="proyecto" optimistic-lock="version">
+        <id name="userId" type="int">
+            <column name="user_id" />
+            <generator class="foreign">
+                <param name="property">user</param>
+            </generator>
+        </id>
+        <many-to-one name="company" class="org.jcmg.hibernate.entities.Company" fetch="select">
+            <column name="company" length="9" not-null="true" />
+        </many-to-one>
+        <many-to-one name="group" class="org.jcmg.hibernate.entities.Group" fetch="select">
+            <column name="group" />
+        </many-to-one>
+        <one-to-one name="user" class="org.jcmg.hibernate.entities.User" constrained="true"></one-to-one>
+        <set name="nonAttendances" table="non_attendance" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="student_id" not-null="true" />
+            </key>
+            <one-to-many class="org.jcmg.hibernate.entities.NonAttendance" />
+        </set>
+        <set name="studentTakesExams" table="student_takes_exam" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="student_id" not-null="true" />
+            </key>
+            <one-to-many class="org.jcmg.hibernate.entities.StudentTakesExam" />
+        </set>
+    </class>
 </hibernate-mapping>

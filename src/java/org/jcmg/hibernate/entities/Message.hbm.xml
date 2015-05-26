@@ -1,36 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 22, 2015 8:17:52 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 26, 2015 7:20:30 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="proyecto" name="org.jcmg.hibernate.entities.Message" optimistic-lock="version" table="message">
-    <composite-id class="org.jcmg.hibernate.entities.MessageId" name="id">
-      <key-property name="messageId" type="int">
-        <column name="message_id"/>
-      </key-property>
-      <key-property name="sender" type="int">
-        <column name="sender"/>
-      </key-property>
-      <key-property name="reciever" type="int">
-        <column name="reciever"/>
-      </key-property>
-    </composite-id>
-    <many-to-one class="org.jcmg.hibernate.entities.User" fetch="select" insert="false" name="userByReciever" update="false">
-      <column name="reciever" not-null="true"/>
-    </many-to-one>
-    <many-to-one class="org.jcmg.hibernate.entities.User" fetch="select" insert="false" name="userBySender" update="false">
-      <column name="sender" not-null="true"/>
-    </many-to-one>
-    <property name="title" type="string">
-      <column length="45" name="title"/>
-    </property>
-    <property name="body" type="string">
-      <column length="16777215" name="body" not-null="true"/>
-    </property>
-    <property name="date" type="timestamp">
-      <column length="19" name="date"/>
-    </property>
-    <property name="read" type="java.lang.Boolean">
-      <column name="read"/>
-    </property>
-  </class>
+    <class name="org.jcmg.hibernate.entities.Message" table="message" catalog="proyecto" optimistic-lock="version">
+        <id name="messageId" type="java.lang.Integer">
+            <column name="message_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="userByReciever" class="org.jcmg.hibernate.entities.User" fetch="select">
+            <column name="reciever" not-null="true" />
+        </many-to-one>
+        <many-to-one name="userBySender" class="org.jcmg.hibernate.entities.User" fetch="select">
+            <column name="sender" not-null="true" />
+        </many-to-one>
+        <property name="title" type="string">
+            <column name="title" length="45" />
+        </property>
+        <property name="body" type="string">
+            <column name="body" length="16777215" not-null="true" />
+        </property>
+        <property name="date" type="timestamp">
+            <column name="date" length="19" />
+        </property>
+        <property name="read" type="java.lang.Boolean">
+            <column name="read_ok" />
+        </property>
+    </class>
 </hibernate-mapping>

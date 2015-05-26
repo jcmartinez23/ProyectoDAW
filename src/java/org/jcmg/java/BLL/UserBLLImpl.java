@@ -90,7 +90,7 @@ public class UserBLLImpl implements UserBLL {
         try {
             HibernateUtil.beginTransaction();
             MessageDAO messageDAO = new MessageDAOImpl();
-            messages = messageDAO.findByUser(entity, includeRead);
+            messages = messageDAO.findByReciever(entity, includeRead);
             HibernateUtil.commitTransaction();
         } catch (HibernateException ex) {
             System.out.println("Handle your error here");

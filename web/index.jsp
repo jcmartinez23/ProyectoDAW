@@ -33,6 +33,8 @@
         <link href="assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
         <!-- END GLOBAL MANDATORY STYLES -->
         <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
+        <link href="assets/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css">
+        <link href="assets/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css">
         <link href="assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
         <link href="assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
         <link href="assets/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
@@ -102,7 +104,7 @@
                                             </span>
                                             <span class="subject">                                    
                                                 <span class="from">
-                                                    Juan Carlos
+                                                    <%=message.getUserBySender().getFirstName()%>
                                                 </span>
                                                 <span class="time">
                                                     <%=df.format(message.getDate())%>
@@ -143,7 +145,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="inbox.html">
+                                <a href="Controller?action=MyInbox">
                                     <i class="fa fa-envelope"></i> Mis mensajes
                                     <span class="badge badge-danger">
                                         <%=userMessages.size()%>
@@ -788,12 +790,15 @@
         <script src="assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
         <script src="assets/plugins/jquery.cokie.min.js" type="text/javascript"></script>
         <script src="assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+        <script src="assets/plugins/bootstrap-modal/js/bootstrap-modalmanager.js" type="text/javascript"></script>
+        <script src="assets/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>
         <!-- END CORE PLUGINS -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
         <script type="text/javascript" src="assets/plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="assets/scripts/core/app.js"></script>
+        <script src="assets/scripts/custom/inbox_custom.js" type="text/javascript"></script>
+        <script src="assets/scripts/core/app.js"></script>        
         <!-- END PAGE LEVEL SCRIPTS -->
         <script>
             jQuery(document).ready(function () {

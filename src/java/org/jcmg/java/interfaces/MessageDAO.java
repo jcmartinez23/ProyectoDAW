@@ -11,5 +11,7 @@ import org.jcmg.hibernate.entities.User;
  */
 public interface MessageDAO extends GenericDAO<Message, Integer>{
     
-    public List<Message> findByUser(User user, Boolean includeRead);
+    public List<Message> findByReciever(User user, Boolean includeRead);
+    
+    public List<Message> findBySender(User user);
 }

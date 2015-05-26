@@ -1,5 +1,5 @@
 package org.jcmg.hibernate.entities;
-// Generated May 22, 2015 8:17:51 PM by Hibernate Tools 4.3.1
+// Generated May 26, 2015 7:20:29 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -10,7 +10,7 @@ import java.util.Date;
 public class Message  implements java.io.Serializable {
 
 
-     private MessageId id;
+     private Integer messageId;
      private User userByReciever;
      private User userBySender;
      private String title;
@@ -22,14 +22,12 @@ public class Message  implements java.io.Serializable {
     }
 
 	
-    public Message(MessageId id, User userByReciever, User userBySender, String body) {
-        this.id = id;
+    public Message(User userByReciever, User userBySender, String body) {
         this.userByReciever = userByReciever;
         this.userBySender = userBySender;
         this.body = body;
     }
-    public Message(MessageId id, User userByReciever, User userBySender, String title, String body, Date date, Boolean read) {
-       this.id = id;
+    public Message(User userByReciever, User userBySender, String title, String body, Date date, Boolean read) {
        this.userByReciever = userByReciever;
        this.userBySender = userBySender;
        this.title = title;
@@ -38,12 +36,12 @@ public class Message  implements java.io.Serializable {
        this.read = read;
     }
    
-    public MessageId getId() {
-        return this.id;
+    public Integer getMessageId() {
+        return this.messageId;
     }
     
-    public void setId(MessageId id) {
-        this.id = id;
+    public void setMessageId(Integer messageId) {
+        this.messageId = messageId;
     }
     public User getUserByReciever() {
         return this.userByReciever;

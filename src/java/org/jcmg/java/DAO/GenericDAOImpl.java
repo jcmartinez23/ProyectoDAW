@@ -20,8 +20,8 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
 
     @Override
     public void save(T entity) {
-        Session hibernateSession = this.getSession();
-        hibernateSession.save(entity);        
+        Session hibernateSession = this.getSession();        
+        hibernateSession.save(entity);
         //hibernateSession.saveOrUpdate(entity);
     }
 

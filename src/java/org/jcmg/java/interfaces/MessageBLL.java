@@ -10,5 +10,7 @@ import org.jcmg.hibernate.entities.User;
  */
 public interface MessageBLL extends GenericBLL<Message>{
     
-    public List<Message> findByUser(User user, Boolean includeRead);
+    public List<Message> findByReciever(User user, Boolean includeRead);
+    
+    public List<Message> findBySender(User user);
 }

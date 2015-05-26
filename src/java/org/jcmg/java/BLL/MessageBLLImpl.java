@@ -15,27 +15,50 @@ import org.jcmg.java.interfaces.MessageDAO;
  * @author Juan Carlos Martínez García
  */
 public class MessageBLLImpl implements MessageBLL {
-    
+
     MessageDAO messageDAO = new MessageDAOImpl();
 
     @Override
-    public List<Message> findByUser(User user, Boolean includeRead) {
-        List<Message> messages = new ArrayList<>();
-        
+    public List<Message> findBySender(User user) {
+                List<Message> messages = new ArrayList<>();
+
         try {
             HibernateUtil.beginTransaction();
-            messages = messageDAO.findByUser(user, includeRead);
+            messages = messageDAO.findBySender(user);
             HibernateUtil.commitTransaction();
         } catch (HibernateException ex) {
             HibernateUtil.rollbackTransaction();
         }
-        
+
+        return messages;
+    }
+
+    @Override
+    public List<Message> findByReciever(User user, Boolean includeRead) {
+        List<Message> messages = new ArrayList<>();
+
+        try {
+            HibernateUtil.beginTransaction();
+            messages = messageDAO.findByReciever(user, includeRead);
+            HibernateUtil.commitTransaction();
+        } catch (HibernateException ex) {
+            HibernateUtil.rollbackTransaction();
+            throw ex;
+        }
+
         return messages;
     }
 
     @Override
     public void save(Message entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            HibernateUtil.beginTransaction();
+            messageDAO.save(entity);
+            HibernateUtil.commitTransaction();
+        } catch (HibernateException ex) {            
+            HibernateUtil.rollbackTransaction();
+            throw ex;
+        }
     }
 
     @Override
@@ -57,5 +80,4 @@ public class MessageBLLImpl implements MessageBLL {
     public Message find(Message entity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

@@ -1,27 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 22, 2015 8:17:52 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 26, 2015 7:20:30 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="proyecto" name="org.jcmg.hibernate.entities.StudentTakesExam" optimistic-lock="version" table="student_takes_exam">
-    <composite-id class="org.jcmg.hibernate.entities.StudentTakesExamId" name="id">
-      <key-property name="studentId" type="int">
-        <column name="student_id"/>
-      </key-property>
-      <key-property name="examId" type="int">
-        <column name="exam_id"/>
-      </key-property>
-      <key-property name="date" type="date">
-        <column length="10" name="date"/>
-      </key-property>
-    </composite-id>
-    <many-to-one class="org.jcmg.hibernate.entities.Exam" fetch="select" insert="false" name="exam" update="false">
-      <column name="exam_id" not-null="true"/>
-    </many-to-one>
-    <many-to-one class="org.jcmg.hibernate.entities.Student" fetch="select" insert="false" name="student" update="false">
-      <column name="student_id" not-null="true"/>
-    </many-to-one>
-    <property name="passed" type="java.lang.Boolean">
-      <column name="passed"/>
-    </property>
-  </class>
+    <class name="org.jcmg.hibernate.entities.StudentTakesExam" table="student_takes_exam" catalog="proyecto" optimistic-lock="version">
+        <composite-id name="id" class="org.jcmg.hibernate.entities.StudentTakesExamId">
+            <key-property name="studentId" type="int">
+                <column name="student_id" />
+            </key-property>
+            <key-property name="examId" type="int">
+                <column name="exam_id" />
+            </key-property>
+            <key-property name="date" type="date">
+                <column name="date" length="10" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="exam" class="org.jcmg.hibernate.entities.Exam" update="false" insert="false" fetch="select">
+            <column name="exam_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="student" class="org.jcmg.hibernate.entities.Student" update="false" insert="false" fetch="select">
+            <column name="student_id" not-null="true" />
+        </many-to-one>
+        <property name="passed" type="java.lang.Boolean">
+            <column name="passed" />
+        </property>
+    </class>
 </hibernate-mapping>

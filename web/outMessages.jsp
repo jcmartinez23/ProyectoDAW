@@ -38,13 +38,13 @@
                     <i class="fa fa-edit"></i> Nuevo
                 </a>
             </li>
-            <li class="inbox active">
+            <li class="inbox">
                 <a href="Controller?action=MyInbox" class="btn" data-title="Inbox">
                     Recibidos
                 </a>
                 <b></b>
             </li>
-            <li class="sent">
+            <li class="sent active">
                 <a class="btn" href="Controller?action=SentMessages" data-title="Sent">
                     Enviados
                 </a>
@@ -54,7 +54,7 @@
     </div>
     <div class="col-md-10">
         <div class="inbox-header">
-            <h1 class="pull-left">Recibidos</h1>
+            <h1 class="pull-left">Enviados</h1>
         </div>
         <div class="inbox-content">
             <div class="inbox-content"><table class="table table-striped table-advance table-hover">
@@ -78,11 +78,8 @@
                     <tbody>
                         <% User user = (User) request.getSession().getAttribute("user");
                             for (Message message : messages) {
-                                if (message.getUserBySender().getUserId() != user.getUserId()) {
-                                    String classRead = message.getRead() ? "" : "unread";
-                        %>                 
-
-                        <tr class="<%=classRead%>" data-messageid="1">
+                        %>                        
+                        <tr data-messageid="1">
                             <td class="inbox-small-cells message-body">
                                 <div style="display:none" class="body-hidden">
                                     <%=message.getBody()%>
@@ -92,8 +89,8 @@
                                 <i class="fa fa-envelope"></i>
                             </td>
                             <td class="view-message hidden-xs message-user">
-                                <%=message.getUserBySender().getFirstName()%>
-                                <%=message.getUserBySender().getLastName()%>
+                                <%=message.getUserByReciever().getFirstName()%>
+                                <%=message.getUserByReciever().getLastName()%>
                             </td>
                             <td class="view-message message-title">
                                 <%=message.getTitle()%>
@@ -105,10 +102,8 @@
                                 <%=message.getDate()%>
                             </td>
 
-                        </tr>        
-
-                        <%}
-                            }%>                                             
+                        </tr>    
+                        <%}%>                                             
                     </tbody>
                 </table></div>
             <div id="full-width" class="modal container fade" tabindex="-1" aria-hidden="true" style="display: none; margin-top: -138.5px;">
@@ -120,12 +115,12 @@
                     <h3 id="title-message">                        
                     </h3>
                     <p id="body-message">
-                        
+
                     </p>
                 </div>
                 <div class="modal-footer">
                     <div style="float:left;">
-                        Enviado por <label id="author"></label> a las <label id="date-message"></label>.
+                        Enviado a <label id="author"></label> a las <label id="date-message"></label>.
                     </div>
                     <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>                    
                 </div>
