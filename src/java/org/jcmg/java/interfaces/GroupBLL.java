@@ -1,6 +1,8 @@
 package org.jcmg.java.interfaces;
 
+import java.util.List;
 import org.jcmg.hibernate.entities.Group;
+import org.jcmg.hibernate.entities.Teacher;
 
 /**
  *
@@ -8,4 +10,6 @@ import org.jcmg.hibernate.entities.Group;
  */
 public interface GroupBLL extends GenericBLL<Group>{
 
+    
+    public List<Group> listByTeacher(Teacher teacher);
 }

@@ -39,9 +39,11 @@
                         <div class="col-md-3">
                             <ul class="list-unstyled profile-nav">
                                 <li>
-                                    <img src="assets/img/profile/profile-img.png" class="img-responsive" alt=""/>
+                                    <% String image = user.getAvatar() != null ? user.getAvatar(): "profile.jpg";%>
+                                    <img src="profileimg/<%=user.getUserId()%>.jpg" class="img-responsive" alt=""/>
                                 </li>
                                 <!---------- Revisar esto por si hay que añadir funciones ---------------->
+                                <% if(user.getUserType()== 'E' || user.getUserType() == 'C') { %>
                                 <li>
                                     <a href="#">
                                         Grupo
@@ -52,6 +54,7 @@
                                         Mi coordinador
                                     </a>
                                 </li>
+                                <%}%>
                                 <li>
                                     <%
                                         int unreadMessages = (int)request.getSession().getAttribute("countMessages");
@@ -68,7 +71,7 @@
                         <div class="col-md-9">
                             <div class="row">
                                 <div class="col-md-8 profile-info">
-                                    <h1><%=user.getFirstName()%></h1>
+                                    <h1><%=user.getFirstName()%> <%=user.getLastName()%></h1>
                                     <p>
                                         Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt laoreet dolore magna aliquam tincidunt erat volutpat laoreet dolore magna aliquam tincidunt erat volutpat.
                                     </p>
@@ -80,10 +83,7 @@
                                     <ul class="list-inline">
                                         <li>
                                             <i class="fa fa-map-marker"></i> LOCALIZACION
-                                        </li>                                        
-                                        <li>
-                                            <i class="fa fa-briefcase"></i> EMPRESA
-                                        </li>
+                                        </li>                                                                                
                                         <li>
                                             <i class="fa fa-star"></i> <%=user.getJobPosition()%>
                                         </li>
@@ -163,11 +163,11 @@
                                     <p>
                                         Este es tu avatar. Es la imagen que verán el resto de usuarios cuando entren en tu perfil. Puedes subir cualquier imagen en formato JPG. Es aconsejable que la pongas, ya que los profesores te identificarán mas fácilmente gracias a ella.
                                     </p>
-                                    <form action="#" role="form">
+                                    <form action="Controller?action=UploadFile" method="POST" role="form" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                                 <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt=""/>
+                                                    <img src="assets/img/profile/<%=image%>" class="img-responsive" alt=""/>
                                                 </div>
                                                 <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;">
                                                 </div>
@@ -188,9 +188,7 @@
                                             </div>
                                         </div>
                                         <div class="margin-top-10">
-                                            <a href="#" class="btn green">
-                                                Enviar
-                                            </a>
+                                            <input type="submit" class="btn green" value="Enviar">                                                
                                             <a href="#" class="btn default">
                                                 Cancelar
                                             </a>

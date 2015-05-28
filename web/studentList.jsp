@@ -5,7 +5,7 @@
     <div class="col-md-12">
         <!-- BEGIN PAGE TITLE & BREADCRUMB-->
         <h3 class="page-title">
-            Lista de Alumnos <small>alumnos de mi empresa</small>
+            Lista de Alumnos
         </h3>
         <ul class="page-breadcrumb breadcrumb">                    
             <li>

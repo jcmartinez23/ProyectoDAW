@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.jcmg.hibernate.entities.Company;
+import org.jcmg.hibernate.entities.Group;
 import org.jcmg.hibernate.entities.Student;
 import org.jcmg.java.DAO.HibernateUtil;
 import org.jcmg.java.DAO.StudentDAOImpl;
@@ -57,6 +58,23 @@ public class StudentBLLImpl implements StudentBLL {
         try {
             HibernateUtil.beginTransaction();
             students = studentDAO.listByCompany(company);
+            HibernateUtil.commitTransaction();
+        } catch (HibernateException e) {
+            System.out.println(e.getMessage());
+            HibernateUtil.rollbackTransaction();
+            throw e;
+        }
+        
+        return students;
+    }
+
+    @Override
+    public List<Student> listByGroup(Group group) {
+        List<Student> students = new ArrayList<>();
+        
+        try {
+            HibernateUtil.beginTransaction();
+            students = studentDAO.listByGroup(group);
             HibernateUtil.commitTransaction();
         } catch (HibernateException e) {
             System.out.println(e.getMessage());

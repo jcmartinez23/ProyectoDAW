@@ -1,8 +1,10 @@
 package org.jcmg.java.BLL;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.jcmg.hibernate.entities.Group;
+import org.jcmg.hibernate.entities.Teacher;
 import org.jcmg.java.DAO.GroupDAOImpl;
 import org.jcmg.java.DAO.HibernateUtil;
 import org.jcmg.java.interfaces.GroupBLL;
@@ -46,6 +48,22 @@ public class GroupBLLImpl implements GroupBLL {
     @Override
     public Group find(Group entity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Group> listByTeacher(Teacher teacher) {
+        List<Group> groups = new ArrayList<>();
+        
+        try {
+            HibernateUtil.beginTransaction();
+            groups = groupDAO.listByTeacher(teacher);
+            HibernateUtil.commitTransaction();
+        } catch (HibernateException ex) {
+            System.out.println(ex.getMessage());
+            HibernateUtil.rollbackTransaction();
+        }
+        
+        return groups;
     }
 
 }

@@ -100,7 +100,7 @@
                                     <li>
                                         <a>
                                             <span class="photo">
-                                                <img src="./assets/img/avatar2.jpg" alt=""/>
+                                                <img src="profileimg/<%=message.getUserBySender().getUserId()%>.jpg" alt=""/>
                                             </span>
                                             <span class="subject">                                    
                                                 <span class="from">
@@ -132,7 +132,8 @@
                     %>
                     <li class="dropdown user">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <img alt="" src="assets/img/avatar1_small.jpg"/>
+                            <% String image = user.getAvatar() != null ? user.getAvatar() : "profile.jpg";%>
+                            <img src="profileimg/<%=user.getUserId()%>.jpg" style="width: 40px;" alt=""/>
                             <span class="username">
                                 <%=user.getFirstName()%> <%=user.getLastName()%>
                             </span>
