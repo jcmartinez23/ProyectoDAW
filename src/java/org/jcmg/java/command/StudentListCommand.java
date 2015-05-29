@@ -25,6 +25,7 @@ public class StudentListCommand extends Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         StudentBLL studentBLL = new StudentBLLImpl();
+        GroupBLL groupBLL = new GroupBLLImpl();
         User user = (User) request.getSession().getAttribute("user");
         List<Student> students = new ArrayList<>();
 
@@ -32,8 +33,11 @@ public class StudentListCommand extends Command {
             CompanyBLL companyBLL = new CompanyBLLImpl();
             Company company = companyBLL.getByCoordinator(user);
             students = studentBLL.listByCompany(company);
-        } else if (user.getUserType() == 'P') {
-            GroupBLL groupBLL = new GroupBLLImpl();
+            
+            List<Group> groups = groupBLL.listByCompany(company);
+            request.getSession().setAttribute("groups", groups);
+                
+        } else if (user.getUserType() == 'P') {            
             Teacher teacher = new Teacher(user.getUserId());
             List<Group> groups = groupBLL.listByTeacher(teacher);
             

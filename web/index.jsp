@@ -799,6 +799,7 @@
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
         <script src="assets/scripts/custom/inbox_custom.js" type="text/javascript"></script>
+        <script src="assets/scripts/custom/student-list.js" type="text/javascript"></script>
         <script src="assets/scripts/core/app.js"></script>        
         <!-- END PAGE LEVEL SCRIPTS -->
         <script>

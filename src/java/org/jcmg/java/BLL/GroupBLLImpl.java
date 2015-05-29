@@ -3,6 +3,7 @@ package org.jcmg.java.BLL;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.jcmg.hibernate.entities.Company;
 import org.jcmg.hibernate.entities.Group;
 import org.jcmg.hibernate.entities.Teacher;
 import org.jcmg.java.DAO.GroupDAOImpl;
@@ -57,6 +58,22 @@ public class GroupBLLImpl implements GroupBLL {
         try {
             HibernateUtil.beginTransaction();
             groups = groupDAO.listByTeacher(teacher);
+            HibernateUtil.commitTransaction();
+        } catch (HibernateException ex) {
+            System.out.println(ex.getMessage());
+            HibernateUtil.rollbackTransaction();
+        }
+        
+        return groups;
+    }
+
+    @Override
+    public List<Group> listByCompany(Company company) {
+        List<Group> groups = new ArrayList<>();
+        
+        try {
+            HibernateUtil.beginTransaction();
+            groups = groupDAO.listByCompany(company);
             HibernateUtil.commitTransaction();
         } catch (HibernateException ex) {
             System.out.println(ex.getMessage());
