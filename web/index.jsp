@@ -12,7 +12,6 @@
 <%@page import="org.jcmg.java.BLL.UserBLLImpl"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
@@ -33,6 +32,9 @@
         <link href="assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
         <!-- END GLOBAL MANDATORY STYLES -->
         <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
+        <link rel="stylesheet" type="text/css" href="assets/plugins/select2/select2.css">
+        <link rel="stylesheet" type="text/css" href="assets/plugins/select2/select2-metronic.css">
+        <link rel="stylesheet" href="assets/plugins/data-tables/DT_bootstrap.css">
         <link href="assets/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css">
         <link href="assets/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css">
         <link href="assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
@@ -268,459 +270,28 @@
                                 </li>                        
                             </ul>
                         </li>
-                        <li>
+                        <li class="last">
                             <a href="javascript:;">
                                 <i class="fa fa-table"></i>
                                 <span class="title">
-                                    Form Stuff
+                                    Informes
                                 </span>
                                 <span class="arrow ">
                                 </span>
                             </a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="form_controls.html">
-                                        Form Controls
+                                    <a href="Controller?action=GetRegistration">
+                                        Matricula
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="form_layouts.html">
-                                        Form Layouts
+                                    <a href="Controller?action=GetAttendances">
+                                        Asistencia
                                     </a>
-                                </li>
-                                <li>
-                                    <a href="form_editable.html">
-                                        <span class="badge badge-roundless badge-warning">
-                                            new
-                                        </span>
-                                        Form X-editable
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="form_wizard.html">
-                                        Form Wizard
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="form_validation.html">
-                                        Form Validation
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="form_image_crop.html">
-                                        <span class="badge badge-roundless badge-important">
-                                            new
-                                        </span>
-                                        Image Cropping
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="form_fileupload.html">
-                                        Multiple File Upload
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="form_dropzone.html">
-                                        Dropzone File Upload
-                                    </a>
-                                </li>
+                                </li>                                                        
                             </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="title">
-                                    Email Templates
-                                </span>
-                                <span class="arrow ">
-                                </span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="email_newsletter.html">
-                                        Responsive Newsletter<br>
-                                        Email Template
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="email_system.html">
-                                        Responsive System<br>
-                                        Email Template
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <i class="fa fa-sitemap"></i>
-                                <span class="title">
-                                    Pages
-                                </span>
-                                <span class="arrow ">
-                                </span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="page_portfolio.html">
-                                        <i class="fa fa-briefcase"></i>
-                                        <span class="badge badge-warning badge-roundless">
-                                            new
-                                        </span>
-                                        Portfolio
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page_timeline.html">
-                                        <i class="fa fa-clock-o"></i>
-                                        <span class="badge badge-info">
-                                            4
-                                        </span>
-                                        Timeline
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page_coming_soon.html">
-                                        <i class="fa fa-cogs"></i>
-                                        Coming Soon
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page_blog.html">
-                                        <i class="fa fa-comments"></i>
-                                        Blog
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page_blog_item.html">
-                                        <i class="fa fa-font"></i>
-                                        Blog Post
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page_news.html">
-                                        <i class="fa fa-coffee"></i>
-                                        <span class="badge badge-success">
-                                            9
-                                        </span>
-                                        News
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page_news_item.html">
-                                        <i class="fa fa-bell"></i>
-                                        News View
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page_about.html">
-                                        <i class="fa fa-group"></i>
-                                        About Us
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page_contact.html">
-                                        <i class="fa fa-envelope-o"></i>
-                                        Contact Us
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page_calendar.html">
-                                        <i class="fa fa-calendar"></i>
-                                        <span class="badge badge-important">
-                                            14
-                                        </span>
-                                        Calendar
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <i class="fa fa-gift"></i>
-                                <span class="title">
-                                    Extra
-                                </span>
-                                <span class="arrow ">
-                                </span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="extra_profile.html">
-                                        User Profile
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="extra_lock.html">
-                                        Lock Screen
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="extra_faq.html">
-                                        FAQ
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="inbox.html">
-                                        <span class="badge badge-important">
-                                            4
-                                        </span>
-                                        Inbox
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="extra_search.html">
-                                        Search Results
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="extra_invoice.html">
-                                        Invoice
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="extra_pricing_table.html">
-                                        Pricing Tables
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="extra_404_option1.html">
-                                        404 Page Option 1
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="extra_404_option2.html">
-                                        404 Page Option 2
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="extra_404_option3.html">
-                                        404 Page Option 3
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="extra_500_option1.html">
-                                        500 Page Option 1
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="extra_500_option2.html">
-                                        500 Page Option 2
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <i class="fa fa-folder-open"></i>
-                                <span class="title">
-                                    Multi Level Menu
-                                </span>
-                                <span class="arrow ">
-                                </span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="javascript:;">
-                                        <i class="fa fa-cogs"></i> Item 1
-                                        <span class="arrow">
-                                        </span>
-                                    </a>
-                                    <ul class="sub-menu">
-                                        <li>
-                                            <a href="javascript:;">
-                                                <i class="fa fa-user"></i>
-                                                Sample Link 1
-                                                <span class="arrow">
-                                                </span>
-                                            </a>
-                                            <ul class="sub-menu">
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="fa fa-remove"></i> Sample Link 1
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="fa fa-pencil"></i> Sample Link 1
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="fa fa-edit"></i> Sample Link 1
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-user"></i> Sample Link 1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-external-link"></i> Sample Link 2
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-bell"></i> Sample Link 3
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">
-                                        <i class="fa fa-globe"></i> Item 2
-                                        <span class="arrow">
-                                        </span>
-                                    </a>
-                                    <ul class="sub-menu">
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-user"></i> Sample Link 1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-external-link"></i> Sample Link 1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-bell"></i> Sample Link 1
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-folder-open"></i>
-                                        Item 3
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <i class="fa fa-user"></i>
-                                <span class="title">
-                                    Login Options
-                                </span>
-                                <span class="arrow ">
-                                </span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="login.html">
-                                        Login Form 1
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="login_soft.html">
-                                        Login Form 2
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <i class="fa fa-th"></i>
-                                <span class="title">
-                                    Data Tables
-                                </span>
-                                <span class="arrow ">
-                                </span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="table_basic.html">
-                                        Basic Datatables
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="table_responsive.html">
-                                        Responsive Datatables
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="table_managed.html">
-                                        Managed Datatables
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="table_editable.html">
-                                        Editable Datatables
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="table_advanced.html">
-                                        Advanced Datatables
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="table_ajax.html">
-                                        Ajax Datatables
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <i class="fa fa-file-text"></i>
-                                <span class="title">
-                                    Portlets
-                                </span>
-                                <span class="arrow ">
-                                </span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="portlet_general.html">
-                                        General Portlets
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="portlet_ajax.html">
-                                        Ajax Portlets
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="portlet_draggable.html">
-                                        Draggable Portlets
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <i class="fa fa-map-marker"></i>
-                                <span class="title">
-                                    Maps
-                                </span>
-                                <span class="arrow ">
-                                </span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="maps_google.html">
-                                        Google Maps
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="maps_vector.html">
-                                        Vector Maps
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="last ">
-                            <a href="charts.html">
-                                <i class="fa fa-bar-chart-o"></i>
-                                <span class="title">
-                                    Visual Charts
-                                </span>
-                            </a>
-                        </li>
+                        </li>                        
                     </ul>
                     <!-- END SIDEBAR MENU -->
                 </div>
@@ -802,20 +373,22 @@
         <script type="text/javascript" src="assets/plugins/jquery-validation/dist/additional-methods.min.js"></script>
         <script src="assets/plugins/jquery-validation/localization/messages_es.js" type="text/javascript"></script>
         <script type="text/javascript" src="assets/plugins/select2/select2.min.js"></script>      
+        <script type="text/javascript" src="assets/plugins/data-tables/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="assets/plugins/data-tables/DT_bootstrap.js"></script>
         <script src="assets/scripts/custom/inbox_custom.js" type="text/javascript"></script>
         <script src="assets/scripts/custom/student-list.js" type="text/javascript"></script>
         <script type="text/javascript" src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
         <script type="text/javascript" src="assets/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js"></script>        
         <script src="assets/scripts/custom/components-pickers.js"></script>        
         <script src="assets/scripts/core/app.js"></script>        
-        <script src="assets/scripts/custom/form-validation.js"></script>
+        <script src="assets/scripts/custom/form-validation.js"></script>        
         <!-- END PAGE LEVEL SCRIPTS -->
         <script>
             jQuery(document).ready(function () {
                 // initiate layout and plugins
                 App.init();
                 ComponentsPickers.init();
-                FormValidation.init();
+                FormValidation.init();                
             });
         </script>
         <!-- END JAVASCRIPTS -->

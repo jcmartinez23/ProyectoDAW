@@ -17,7 +17,7 @@
             <column name="`group`" />
         </many-to-one>
         <one-to-one name="user" class="org.jcmg.hibernate.entities.User" constrained="true"></one-to-one>
-        <set name="nonAttendances" table="non_attendance" inverse="true" lazy="true" fetch="select">
+        <set name="nonAttendances" table="non_attendance" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="student_id" not-null="true" />
             </key>

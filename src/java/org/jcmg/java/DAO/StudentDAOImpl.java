@@ -2,6 +2,7 @@ package org.jcmg.java.DAO;
 
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
@@ -38,7 +39,11 @@ public class StudentDAOImpl extends GenericDAOImpl<Student, Integer> implements 
         Criteria criteriaStudent = session.createCriteria(Student.class);
         criteriaStudent.add(Restrictions.eq("company", company));
         criteriaStudent.createCriteria("group", JoinType.LEFT_OUTER_JOIN);
-        criteriaStudent.createCriteria("user", JoinType.INNER_JOIN);
+        criteriaStudent.createCriteria("user", JoinType.INNER_JOIN);        
+        criteriaStudent.setFetchMode("nonAttendances", FetchMode.JOIN);
+        criteriaStudent.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        //criteriaStudent.setMaxResults(1);
+        //criteriaStudent.setFirstResult(0);
         List<Student> students = criteriaStudent.list();
         return students;
     }

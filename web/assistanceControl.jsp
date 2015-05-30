@@ -84,7 +84,7 @@
                                     No
                                 </td>
                                 <td>
-                                    <a href="Controller?action=JustifyNonAttendance&attendanceId=<%=nonAttendance.getNonAttendanceId()%>" class="btn default btn-xs green">
+                                    <a href="Controller?action=JustifyNonAttendance&nonAttendanceId=<%=nonAttendance.getNonAttendanceId()%>" class="btn default btn-xs green">
                                         <i class="fa fa-check-circle"></i> Justificar
                                     </a>
                                 </td>

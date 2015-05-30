@@ -11,4 +11,6 @@ import org.jcmg.hibernate.entities.Student;
 public interface NonAttendanceDAO extends GenericDAO<NonAttendance, Integer>{
 
     public List<NonAttendance> listByStudent(Student student, Boolean selectJustified);       
+
+    public void update(NonAttendance entity);
 }

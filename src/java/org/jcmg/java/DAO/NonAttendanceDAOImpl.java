@@ -28,4 +28,10 @@ public class NonAttendanceDAOImpl extends GenericDAOImpl<NonAttendance, Integer>
         
         return nonAttendances;
     }   
+
+    @Override
+    public void update(NonAttendance entity) {
+        Session hibernateSession = this.getSession();        
+        hibernateSession.update(entity);
+    }
 }

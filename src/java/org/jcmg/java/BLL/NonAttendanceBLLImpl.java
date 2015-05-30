@@ -48,7 +48,14 @@ public class NonAttendanceBLLImpl implements NonAttendanceBLL{
 
     @Override
     public void update(NonAttendance entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            HibernateUtil.beginTransaction();
+            nonAttendanceDAO.update(entity);
+            HibernateUtil.commitTransaction();
+        } catch (HibernateException ex) {
+            HibernateUtil.rollbackTransaction();
+            throw ex;
+        }
     }
 
     @Override
@@ -63,7 +70,18 @@ public class NonAttendanceBLLImpl implements NonAttendanceBLL{
 
     @Override
     public NonAttendance find(NonAttendance entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        NonAttendance nonAttendance = new NonAttendance();
+        
+        try {
+            HibernateUtil.beginTransaction();
+            nonAttendance = nonAttendanceDAO.findByID(NonAttendance.class, entity.getNonAttendanceId());
+            HibernateUtil.commitTransaction();
+        } catch (HibernateException ex) {
+            HibernateUtil.rollbackTransaction();
+            throw ex;
+        }
+        
+        return nonAttendance;
     }
 
 }
