@@ -33,7 +33,14 @@ public class StudentBLLImpl implements StudentBLL {
 
     @Override
     public void update(Student entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            HibernateUtil.beginTransaction();
+            studentDAO.update(entity);
+            HibernateUtil.commitTransaction();
+        } catch (HibernateException ex) {
+            HibernateUtil.rollbackTransaction();
+            throw ex;            
+        }
     }
 
     @Override
@@ -48,7 +55,19 @@ public class StudentBLLImpl implements StudentBLL {
 
     @Override
     public Student find(Student entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Student student = new Student();
+        
+        try {
+            HibernateUtil.beginTransaction();
+            student = studentDAO.findByID(Student.class, entity.getUser().getUserId());
+            HibernateUtil.commitTransaction();
+        } catch (HibernateException e) {
+            System.out.println(e.getMessage());
+            HibernateUtil.rollbackTransaction();
+            throw e;
+        }
+        
+        return student;
     }
 
     @Override

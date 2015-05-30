@@ -14,7 +14,7 @@
             <column name="company" length="9" not-null="true" />
         </many-to-one>
         <many-to-one name="group" class="org.jcmg.hibernate.entities.Group" fetch="select">
-            <column name="group" />
+            <column name="`group`" />
         </many-to-one>
         <one-to-one name="user" class="org.jcmg.hibernate.entities.User" constrained="true"></one-to-one>
         <set name="nonAttendances" table="non_attendance" inverse="true" lazy="true" fetch="select">

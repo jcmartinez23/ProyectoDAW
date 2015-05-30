@@ -34,6 +34,7 @@
 <!-- END PAGE HEADER-->
 <!-- BEGIN PAGE CONTENT-->
 <div class="row">
+    <%User loggedUser = (User) request.getSession().getAttribute("user");%>
     <div class="col-lg-12">
         <!-- BEGIN SAMPLE TABLE PORTLET-->
         <div class="portlet">
@@ -88,10 +89,16 @@
                                     <label style="color:red;">Sin Asignar</label>
                                     <% }%>
                                 </td>
-                                <td>                                    
+                                <td>                     
+                                    <%if (loggedUser.getUserType() == 'C') { %>
                                     <a href="#" class="btn default btn-xs purple edit-student" data-target="#full-width" data-toggle="modal">
-                                        <i class="fa fa-edit"></i> Edit
+                                        <i class="fa fa-edit"></i> Cambiar Grupo
                                     </a>
+                                    <% } else { %>
+                                    <a href="Controller?action=StudentAssistance&studentid=<%=student.getUserId()%>" class="btn default btn-xs blue edit-attendance">
+                                        <i class="fa fa-edit"></i> Asistencia
+                                    </a>
+                                    <% } %>
                                 </td>
                             </tr>    
                             <%}%>
@@ -120,17 +127,19 @@
                                 <select class="form-control" name="group">                                    
                                     <% List<Group> groups = (List< Group>) request.getSession().getAttribute("groups");
                                         for (Group group : groups) {%>
-                                        <option value="<%=group.getGroupId()%>"><%=group.getGroupCode()%></option>
+                                    <option value="<%=group.getGroupId()%>"><%=group.getGroupCode()%></option>
                                     <%}%>
                                 </select>
                             </div>          
                         </div>                    
+
+
+                        <div class="modal-footer">                
+                            <button type="submit" class="btn blue">Actualizar</button>
+                            <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>                    
+                        </div>
                     </form>
                 </div>
-            </div>
-            <div class="modal-footer">                
-                <button type="submit" class="btn blue">Actualizar</button>
-                <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>                    
             </div>
         </div>
         <!-- END SAMPLE TABLE PORTLET-->

@@ -14,4 +14,6 @@ public interface StudentDAO extends GenericDAO<Student, Integer> {
     public List<Student> listByCompany(Company company);
     
     public List<Student> listByGroup(Group group);
+
+    public void update(Student entity);
 }

@@ -7,9 +7,11 @@ import org.jcmg.hibernate.entities.Group;
 import org.jcmg.hibernate.entities.Student;
 import org.jcmg.hibernate.entities.User;
 import org.jcmg.java.BLL.CompanyBLLImpl;
+import org.jcmg.java.BLL.GroupBLLImpl;
 import org.jcmg.java.BLL.StudentBLLImpl;
 import org.jcmg.java.BLL.UserBLLImpl;
 import org.jcmg.java.interfaces.CompanyBLL;
+import org.jcmg.java.interfaces.GroupBLL;
 import org.jcmg.java.interfaces.StudentBLL;
 import org.jcmg.java.interfaces.UserBLL;
 
@@ -30,12 +32,20 @@ public class UpdateStudentGroupCommand extends Command {
 
         User user = userBLL.find(new User(request.getParameter("mail")));
         
-        Student studenQuery = new Student(company, user);
-        Student student = studentBLL.find(studenQuery);
+        Student studentQuery = new Student(company, user);
+        Student student = studentBLL.find(studentQuery);
         
+        Group groupQuery = new Group();
+        groupQuery.setGroupId(Integer.valueOf(request.getParameter("group")));
+        GroupBLL groupBLL = new GroupBLLImpl();        
+        Group updatedGroup = groupBLL.find(groupQuery);
+        
+        student.setGroup(updatedGroup);
+        
+        studentBLL.update(student);
         // BUSCAR GRUPO POR CODIGO!!!!!
 
-        return "studentList.jsp";
+        return "profile.jsp";
     }
 
 }

@@ -48,7 +48,18 @@ public class GroupBLLImpl implements GroupBLL {
 
     @Override
     public Group find(Group entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Group group = new Group();
+        
+        try {
+            HibernateUtil.beginTransaction();
+            group = groupDAO.findByID(Group.class, entity.getGroupId());
+            HibernateUtil.commitTransaction();
+        } catch (HibernateException ex) {
+            System.out.println(ex.getMessage());
+            HibernateUtil.rollbackTransaction();
+        }
+        
+        return group;
     }
 
     @Override

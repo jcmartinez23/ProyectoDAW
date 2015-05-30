@@ -33,9 +33,16 @@ public class StudentDAOImpl extends GenericDAOImpl<Student, Integer> implements 
         Session session = HibernateUtil.getSession();
         Criteria criteriaStudent = session.createCriteria(Student.class);
         criteriaStudent.add(Restrictions.eq("group", group));
+        criteriaStudent.createCriteria("group", JoinType.LEFT_OUTER_JOIN);
         criteriaStudent.createCriteria("user", JoinType.INNER_JOIN);
         List<Student> students = criteriaStudent.list();
         return students;
+    }
+
+    @Override
+    public void update(Student entity) {
+        Session hibernateSession = this.getSession();        
+        hibernateSession.update(entity);
     }
 
 }

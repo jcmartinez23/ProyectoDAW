@@ -39,8 +39,7 @@ public class StudentListCommand extends Command {
                 
         } else if (user.getUserType() == 'P') {            
             Teacher teacher = new Teacher(user.getUserId());
-            List<Group> groups = groupBLL.listByTeacher(teacher);
-            
+            List<Group> groups = groupBLL.listByTeacher(teacher);            
             for(Group group : groups) {
                 List<Student> groupStudents = studentBLL.listByGroup(group);
                 students.addAll(groupStudents);
