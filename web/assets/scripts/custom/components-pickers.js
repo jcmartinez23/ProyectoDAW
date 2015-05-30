@@ -2,9 +2,13 @@ var ComponentsPickers = function () {
 
     var handleDatePickers = function () {
 
-        if (jQuery().datepicker) {
+        if (jQuery().datepicker) {            
+            
             $('.date-picker').datepicker({
-                rtl: App.isRTL(),
+                rtl: App.isRTL(),                
+                language: 'es',
+                weekStart: 1,
+                format: 'dd/mm/yyyy',
                 autoclose: true
             });
             $('body').removeClass("modal-open"); // fix bug when inline picker is used in modal
@@ -107,15 +111,15 @@ var ComponentsPickers = function () {
                 buttonClasses: ['btn'],
                 applyClass: 'green',
                 cancelClass: 'default',
-                format: 'MM/DD/YYYY',
+                format: 'DD/MM/YYYY',
                 separator: ' to ',
                 locale: {
                     applyLabel: 'Apply',
                     fromLabel: 'From',
                     toLabel: 'To',
                     customRangeLabel: 'Custom Range',
-                    daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-                    monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                    daysOfWeek: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+                    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
                     firstDay: 1
                 }
             },
@@ -207,11 +211,11 @@ var ComponentsPickers = function () {
         //main function to initiate the module
         init: function () {
             handleDatePickers();
-            handleTimePickers();
-            handleDatetimePicker();
-            handleDateRangePickers();
-            handleClockfaceTimePickers();
-            handleColorPicker();
+//            handleTimePickers();
+//            handleDatetimePicker();
+//            handleDateRangePickers();
+//            handleClockfaceTimePickers();
+//            handleColorPicker();
         }
     };
 

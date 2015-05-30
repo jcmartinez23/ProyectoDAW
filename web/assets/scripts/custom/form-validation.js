@@ -4,7 +4,7 @@ var FormValidation = function () {
         // for more info visit the official plugin documentation: 
             // http://docs.jquery.com/Plugins/Validation
 
-            var form1 = $('#form_sample_1');
+            var form1 = $('#form-attendance');
             var error1 = $('.alert-danger', form1);
             var success1 = $('.alert-success', form1);
 
@@ -13,6 +13,7 @@ var FormValidation = function () {
                 errorClass: 'help-block', // default input error message class
                 focusInvalid: false, // do not focus the last invalid input
                 ignore: "",
+                debug: false,
                 rules: {
                     name: {
                         minlength: 2,
@@ -39,7 +40,7 @@ var FormValidation = function () {
                         creditcard: true
                     },
                     occupation: {
-                        minlength: 5,
+                        minlength: 5
                     },
                     category: {
                         required: true
@@ -70,6 +71,7 @@ var FormValidation = function () {
                 submitHandler: function (form) {
                     success1.show();
                     error1.hide();
+                    form.submit();
                 }
             });
 

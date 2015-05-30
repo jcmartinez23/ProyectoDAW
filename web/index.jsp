@@ -21,7 +21,7 @@
     <!-- BEGIN HEAD -->
     <head>
         <meta charset="utf-8"/>
-        <title>Metronic | Admin Dashboard Template</title>
+        <title>Learning</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <meta content="" name="description"/>
@@ -36,7 +36,7 @@
         <link href="assets/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css">
         <link href="assets/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css">
         <link href="assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
-        <link href="assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" type="text/css"/>       
         <link href="assets/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
         <link href="assets/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
         <link href="assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"/>
@@ -798,14 +798,24 @@
         <script type="text/javascript" src="assets/plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <script type="text/javascript" src="assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="assets/plugins/jquery-validation/dist/additional-methods.min.js"></script>
+        <script src="assets/plugins/jquery-validation/localization/messages_es.js" type="text/javascript"></script>
+        <script type="text/javascript" src="assets/plugins/select2/select2.min.js"></script>      
         <script src="assets/scripts/custom/inbox_custom.js" type="text/javascript"></script>
         <script src="assets/scripts/custom/student-list.js" type="text/javascript"></script>
+        <script type="text/javascript" src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="assets/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js"></script>        
+        <script src="assets/scripts/custom/components-pickers.js"></script>        
         <script src="assets/scripts/core/app.js"></script>        
+        <script src="assets/scripts/custom/form-validation.js"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
         <script>
             jQuery(document).ready(function () {
                 // initiate layout and plugins
                 App.init();
+                ComponentsPickers.init();
+                FormValidation.init();
             });
         </script>
         <!-- END JAVASCRIPTS -->

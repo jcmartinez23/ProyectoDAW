@@ -6,10 +6,13 @@ import org.hibernate.HibernateException;
 import org.jcmg.hibernate.entities.Company;
 import org.jcmg.hibernate.entities.Group;
 import org.jcmg.hibernate.entities.Student;
+import org.jcmg.hibernate.entities.User;
 import org.jcmg.java.DAO.HibernateUtil;
 import org.jcmg.java.DAO.StudentDAOImpl;
+import org.jcmg.java.DAO.UserDAOImpl;
 import org.jcmg.java.interfaces.StudentBLL;
 import org.jcmg.java.interfaces.StudentDAO;
+import org.jcmg.java.interfaces.UserDAO;
 
 /**
  *
@@ -55,11 +58,11 @@ public class StudentBLLImpl implements StudentBLL {
 
     @Override
     public Student find(Student entity) {
-        Student student = new Student();
+        Student student = new Student();        
         
         try {
             HibernateUtil.beginTransaction();
-            student = studentDAO.findByID(Student.class, entity.getUser().getUserId());
+            student = studentDAO.find(entity);                      
             HibernateUtil.commitTransaction();
         } catch (HibernateException e) {
             System.out.println(e.getMessage());

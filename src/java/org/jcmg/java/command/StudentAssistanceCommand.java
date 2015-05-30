@@ -22,21 +22,22 @@ public class StudentAssistanceCommand extends Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         Integer studentId = Integer.valueOf(request.getParameter("studentid"));
-        
+
         StudentBLL studentBLL = new StudentBLLImpl();
-                
+
         User studentUser = new User();
-        studentUser.setUserId(studentId);               
-        
+        studentUser.setUserId(studentId);
+
         Student student = studentBLL.find(new Student(null, studentUser));
-        
+
         NonAttendanceBLL nonAttendanceBLL = new NonAttendanceBLLImpl();
         List<NonAttendance> justifiedNonAttendances = nonAttendanceBLL.listByStudent(student, Boolean.TRUE);
         List<NonAttendance> notJustifiedNonAttendances = nonAttendanceBLL.listByStudent(student, Boolean.FALSE);
-        
+
+        request.getSession().setAttribute("student", student);
         request.setAttribute("justifiedNonAttendances", justifiedNonAttendances);
         request.setAttribute("notJustifiedNonAttendances", notJustifiedNonAttendances);
-        
+
         return "assistanceControl.jsp";
     }
 

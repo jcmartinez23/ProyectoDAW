@@ -16,6 +16,21 @@ import org.jcmg.java.interfaces.StudentDAO;
  */
 public class StudentDAOImpl extends GenericDAOImpl<Student, Integer> implements StudentDAO {
 
+    
+    @Override
+    public Student find(Student entity) {
+        Session session = HibernateUtil.getSession();
+        Student student = new Student();        
+        
+        Criteria criteria = session.createCriteria(Student.class);
+        criteria.add(Restrictions.eq("userId", entity.getUser().getUserId()));
+        criteria.createCriteria("user", JoinType.INNER_JOIN);        
+        
+        student = (Student) criteria.uniqueResult();
+        
+        return student;
+    }
+    
     @Override
     public List<Student> listByCompany(Company company) {
         Session session = HibernateUtil.getSession();

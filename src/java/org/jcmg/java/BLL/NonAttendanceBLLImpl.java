@@ -36,7 +36,14 @@ public class NonAttendanceBLLImpl implements NonAttendanceBLL{
 
     @Override
     public void save(NonAttendance entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            HibernateUtil.beginTransaction();
+            nonAttendanceDAO.save(entity);
+            HibernateUtil.commitTransaction();
+        } catch (HibernateException ex) {
+            HibernateUtil.rollbackTransaction();
+            throw ex;
+        }
     }
 
     @Override
