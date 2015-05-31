@@ -1,8 +1,7 @@
 <%@page import="org.jcmg.hibernate.entities.User"%>
 <% User user = (User) request.getSession().getAttribute("user"); %>
 <div class="row">
-    <div class="col-md-12">
-        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+    <div class="col-md-12">        
         <h3 class="page-title">
             Mi perfil <small>información de usuario</small>
         </h3>
@@ -41,31 +40,7 @@
                                 <li>
                                     <% String image = user.getAvatar() != null ? user.getAvatar(): "profile.jpg";%>
                                     <img src="profileimg/<%=user.getUserId()%>.jpg" class="img-responsive" alt=""/>
-                                </li>
-                                <!---------- Revisar esto por si hay que añadir funciones ---------------->
-                                <% if(user.getUserType()== 'E' || user.getUserType() == 'C') { %>
-                                <li>
-                                    <a href="#">
-                                        Grupo
-                                    </a>
-                                </li>                                
-                                <li>
-                                    <a href="#">
-                                        Mi coordinador
-                                    </a>
-                                </li>
-                                <%}%>
-                                <li>
-                                    <%
-                                        int unreadMessages = (int)request.getSession().getAttribute("countMessages");
-                                    %>
-                                    <a href="Controller?action=MyInbox">
-                                        Mensajes
-                                        <span>
-                                            <%=unreadMessages%>
-                                        </span>
-                                    </a>
-                                </li>
+                                </li>                                                                
                             </ul>
                         </div>
                         <div class="col-md-9">
@@ -167,18 +142,12 @@
                                         <div class="form-group">
                                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                                 <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                                    <img src="assets/img/profile/<%=image%>" class="img-responsive" alt=""/>
+                                                    <img src="profileimg/<%=user.getUserId()%>.jpg" class="img-responsive" alt=""/>
                                                 </div>
                                                 <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;">
                                                 </div>
                                                 <div>
-                                                    <span class="btn default btn-file">
-                                                        <!--<span class="fileinput-new">
-                                                            Seleccionar
-                                                        </span>
-                                                        <span class="fileinput-exists">
-                                                            Cambiar
-                                                        </span> -->
+                                                    <span class="btn default btn-file">                                                        
                                                         <input type="file" name="...">
                                                     </span>
                                                     <a href="#" class="btn default fileinput-exists" data-dismiss="fileinput">
@@ -221,10 +190,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!--end col-md-9-->
                     </div>
                 </div>
             </div>
         </div>
-        <!--END TABS-->
     </div>

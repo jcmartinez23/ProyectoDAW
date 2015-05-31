@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : May 13, 2015, 7:48:09 PM
-    Author     : juanca
---%>
-
 <%@page import="java.text.DateFormat"%>
 <%@page import="org.jcmg.hibernate.entities.Message"%>
 <%@page import="java.util.List"%>
@@ -17,21 +11,19 @@
 <!--[if !IE]><!-->
 <html lang="en" class="no-js">
     <!--<![endif]-->
-    <!-- BEGIN HEAD -->
     <head>
         <meta charset="utf-8"/>
         <title>Learning</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <meta content="" name="description"/>
-        <meta content="" name="author"/>
-        <!-- BEGIN GLOBAL MANDATORY STYLES -->
+        <meta content="Juan Carlos Martínez García" name="author"/>        
+        
+        <!-- PLUGIN STYLES -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
-        <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
-        <!-- END GLOBAL MANDATORY STYLES -->
-        <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
+        <link href="assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>               
         <link rel="stylesheet" type="text/css" href="assets/plugins/select2/select2.css">
         <link rel="stylesheet" type="text/css" href="assets/plugins/select2/select2-metronic.css">
         <link rel="stylesheet" href="assets/plugins/data-tables/DT_bootstrap.css">
@@ -41,9 +33,8 @@
         <link href="assets/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" type="text/css"/>       
         <link href="assets/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
         <link href="assets/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
-        <link href="assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"/>
-        <!-- END PAGE LEVEL PLUGIN STYLES -->
-        <!-- BEGIN THEME STYLES -->
+        <link href="assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"/>        
+        <!-- BEGIN BOOTSTRAP THEME STYLES -->
         <link href="assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
         <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
         <link href="assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
@@ -53,19 +44,14 @@
         <link href="assets/css/print.css" rel="stylesheet" type="text/css" media="print"/>
         <link href="assets/css/custom.css" rel="stylesheet" type="text/css"/>
         <link href="assets/css/pages/profile.css" rel="stylesheet" type="text/css"/>
-        <link href="assets/css/pages/inbox.css" rel="stylesheet" type="text/css"/>
-        <!-- END THEME STYLES -->
+        <link href="assets/css/pages/inbox.css" rel="stylesheet" type="text/css"/>        
         <link rel="shortcut icon" href="favicon.ico"/>
-    </head>
-    <!-- END HEAD -->
-    <!-- BEGIN BODY -->
+    </head>    
     <body class="page-header-fixed">
-        <!-- BEGIN HEADER -->
         <div class="header navbar navbar-fixed-top">
-            <!-- BEGIN TOP NAVIGATION BAR -->
             <div class="header-inner">
                 <!-- BEGIN LOGO -->
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="Controller">
                     <img src="assets/img/logo.png" alt="logo" class="img-responsive"/>
                 </a>
                 <!-- END LOGO -->
@@ -181,165 +167,41 @@
         <!-- BEGIN CONTAINER -->
         <div class="page-container">
             <!-- BEGIN SIDEBAR -->
-            <div class="page-sidebar-wrapper">
-                <div class="page-sidebar navbar-collapse collapse">
-                    <!-- add "navbar-no-scroll" class to disable the scrolling of the sidebar menu -->
-                    <!-- BEGIN SIDEBAR MENU -->
-                    <ul class="page-sidebar-menu" data-auto-scroll="true" data-slide-speed="200">                        
-                        <li class="start active ">
-                            <a href="Controller">
-                                <i class="fa fa-home"></i>
-                                <span class="title">
-                                    Mi Perfil
-                                </span>
-                                <span class="selected">
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Controller?action=ListCompanies">
-                                <i class="fa fa-shopping-cart"></i>
-                                <span class="title">
-                                    Empresas
-                                </span>
-                                <span class="arrow ">
-                                </span>
-                            </a>                            
-                        </li>
-                        <li>
-                            <a href="Controller?action=ListTeachers">
-                                <i class="fa fa-gift"></i>
-                                <span class="title">
-                                    Profesores
-                                </span>
-                                <span class="arrow">
-                                </span>
-                            </a>                                                     
-                        </li>
-                        <li>
-                            <a href="Controller?action=CreateUserForm">
-                                <i class="fa fa-cogs"></i>
-                                <span class="title">
-                                    Crear Usuarios
-                                </span>
-                                <span class="arrow ">
-                                </span>
-                            </a>                            
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <i class="fa fa-bookmark-o"></i>
-                                <span class="title">
-                                    Grupos
-                                </span>
-                                <span class="arrow ">
-                                </span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="Controller?action=CreateGroupForm">
-                                        Nuevo
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="ui_buttons.html">
-                                        Gestionar
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <i class="fa fa-puzzle-piece"></i>
-                                <span class="title">
-                                    Alumnos
-                                </span>
-                                <span class="arrow ">
-                                </span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="Controller?action=StudentList">
-                                        Lista
-                                    </a>
-                                </li>        
-                                <li>
-                                    <a href="Controller?action=CreateStudent">
-                                        Registar
-                                    </a>
-                                </li>                        
-                            </ul>
-                        </li>
-                        <li class="last">
-                            <a href="javascript:;">
-                                <i class="fa fa-table"></i>
-                                <span class="title">
-                                    Informes
-                                </span>
-                                <span class="arrow ">
-                                </span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="Controller?action=GetRegistration">
-                                        Matricula
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="Controller?action=GetAttendances">
-                                        Asistencia
-                                    </a>
-                                </li>                                                        
-                            </ul>
-                        </li>                        
-                    </ul>
-                    <!-- END SIDEBAR MENU -->
-                </div>
-            </div>
-            <!-- END SIDEBAR -->
-            <!-- BEGIN CONTENT -->
-            <div class="page-content-wrapper">
-                <div class="page-content">
-                    <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-                    <div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                    <h4 class="modal-title">Modal title</h4>
+            <% String menu = (String) request.getSession().getAttribute("menu");%>
+            <jsp:include page="<%=menu%>"></jsp:include>
+                <!-- END SIDEBAR -->                
+                <div class="page-content-wrapper">
+                    <div class="page-content">
+                        <div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                        <h4 class="modal-title">Modal title</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        Widget settings form goes here
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn blue">Save changes</button>
+                                        <button type="button" class="btn default" data-dismiss="modal">Close</button>
+                                    </div>
                                 </div>
-                                <div class="modal-body">
-                                    Widget settings form goes here
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn blue">Save changes</button>
-                                    <button type="button" class="btn default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                            <!-- /.modal-content -->
-                        </div>
-                        <!-- /.modal-dialog -->
-                    </div>
-                    <!-- /.modal -->
-                    <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-                    <!-- BEGIN PAGE HEADER-->            
-                    <!-- END PAGE HEADER-->
-                    <!-- BEGIN PAGE CONTENT-->
+                            </div>                            
+                        </div>                        
+                        <!-- BEGIN PAGE CONTENT-->
                     <%
                         String mainPage = (String) request.getAttribute("mainPage");
                     %>
                     <jsp:include page="<%=mainPage%>"></jsp:include>
                     <!-- END PAGE CONTENT-->
                 </div>
-            </div>
-            <!-- END CONTENT -->
-        </div>
-        <!-- END CONTAINER -->
-        <!-- END CONTAINER -->
+            </div>            
+        </div>        
         <!-- BEGIN FOOTER -->
         <div class="footer">
             <div class="footer-inner">
-                2014 &copy; Metronic by keenthemes.
+                2015 &copy; Proyecto final DAW. Juan Carlos Martínez García
             </div>
             <div class="footer-tools">
                 <span class="go-top">
@@ -347,13 +209,7 @@
                 </span>
             </div>
         </div>
-        <!-- END FOOTER -->
-        <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
-        <!-- BEGIN CORE PLUGINS -->
-        <!--[if lt IE 9]>
-    <script src="assets/plugins/respond.min.js"></script>
-    <script src="assets/plugins/excanvas.min.js"></script>
-    <![endif]-->
+        <!-- JAVASCRIPT PLUGINS -->
         <script src="assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
         <script src="assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
         <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
@@ -363,12 +219,8 @@
         <script src="assets/plugins/jquery.cokie.min.js" type="text/javascript"></script>
         <script src="assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
         <script src="assets/plugins/bootstrap-modal/js/bootstrap-modalmanager.js" type="text/javascript"></script>
-        <script src="assets/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>
-        <!-- END CORE PLUGINS -->
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <script type="text/javascript" src="assets/plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
-        <!-- END PAGE LEVEL PLUGINS -->
-        <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <script src="assets/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>        
+        <script type="text/javascript" src="assets/plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>                
         <script type="text/javascript" src="assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
         <script type="text/javascript" src="assets/plugins/jquery-validation/dist/additional-methods.min.js"></script>
         <script src="assets/plugins/jquery-validation/localization/messages_es.js" type="text/javascript"></script>
@@ -379,19 +231,18 @@
         <script src="assets/scripts/custom/student-list.js" type="text/javascript"></script>
         <script type="text/javascript" src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
         <script type="text/javascript" src="assets/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js"></script>        
+        
+        <!-- CUSTOM JS -->
         <script src="assets/scripts/custom/components-pickers.js"></script>        
         <script src="assets/scripts/core/app.js"></script>        
-        <script src="assets/scripts/custom/form-validation.js"></script>        
-        <!-- END PAGE LEVEL SCRIPTS -->
+        <script src="assets/scripts/custom/form-validation.js"></script>                
         <script>
             jQuery(document).ready(function () {
                 // initiate layout and plugins
                 App.init();
                 ComponentsPickers.init();
-                FormValidation.init();                
+                FormValidation.init();
             });
-        </script>
-        <!-- END JAVASCRIPTS -->
+        </script>        
     </body>
-    <!-- END BODY -->
 </html>

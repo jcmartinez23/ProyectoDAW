@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.jcmg.java.controller;
 
 import com.google.gson.Gson;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -85,6 +79,25 @@ public class AJAXLogIn extends HttpServlet {
             map.put("mail", mail);
             map.put("password", password);
             request.getSession().setAttribute("user", user);
+            
+            String menu = "";
+            switch(user.getUserType()) {
+                case 'P':
+                    menu = "teacher-menu.jsp";
+                    break;
+                case 'C':
+                    menu = "coordinator-menu.jsp";
+                    break;
+                case 'A':
+                    menu = "fullmenu.jsp";
+                    break;
+                case 'E':
+                    menu = "student-menu.jsp";
+                    break;
+            }
+            
+            request.getSession().setAttribute("menu", menu);
+            
         }
         map.put("validLogin", isLoginValid);
         write(response, map);

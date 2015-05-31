@@ -1,10 +1,9 @@
 package org.jcmg.java.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
-import javafx.scene.paint.Color;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,8 +13,10 @@ import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
+import org.jcmg.hibernate.entities.NonAttendance;
 import org.jcmg.hibernate.entities.Student;
 import org.jcmg.hibernate.entities.User;
 
@@ -56,9 +57,18 @@ public class RegistrationSheetGenerator extends HttpServlet {
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet worksheet = workbook.createSheet("Informe Matrícula");
 
-        // we create the titles
-        Row titleRow = worksheet.createRow(0);        
-        titleRow.createCell(0).setCellValue("Correo");        
+        // we create the title style
+        HSSFCellStyle titleStyle = workbook.createCellStyle();
+        HSSFFont titleFont = workbook.createFont();
+        titleFont.setBold(true);
+        titleFont.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+        titleFont.setFontHeightInPoints((short) 16);
+        titleStyle.setFont(titleFont);
+
+        // we create the title
+        Row titleRow = worksheet.createRow(0);
+        titleRow.setRowStyle(titleStyle);
+        titleRow.createCell(0).setCellValue("Correo");
         titleRow.createCell(1).setCellValue("Nombre");
         titleRow.createCell(2).setCellValue("Grupo");
         titleRow.createCell(3).setCellValue("FNJ");
@@ -74,7 +84,19 @@ public class RegistrationSheetGenerator extends HttpServlet {
             row.createCell(0).setCellValue(user.getMail());
             row.createCell(1).setCellValue(user.getFirstName() + " " + user.getLastName());
             row.createCell(2).setCellValue(student.getGroup().getGroupCode());
-            row.createCell(3).setCellValue(student.getNonAttendances().size());
+
+            Set nonAttendances = student.getNonAttendances();
+            Iterator it = nonAttendances.iterator();
+
+            int notJustifiedAttendances = 0;
+            while (it.hasNext()) {
+                NonAttendance na = (NonAttendance) it.next();
+                if (!na.isProof()) {
+                    notJustifiedAttendances++;
+                }
+            }
+
+            row.createCell(3).setCellValue(notJustifiedAttendances);
         }
 
         workbook.write(response.getOutputStream()); // Write workbook to response.

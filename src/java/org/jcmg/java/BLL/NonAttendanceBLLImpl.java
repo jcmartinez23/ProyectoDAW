@@ -1,6 +1,7 @@
 package org.jcmg.java.BLL;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.jcmg.hibernate.entities.NonAttendance;
@@ -82,6 +83,22 @@ public class NonAttendanceBLLImpl implements NonAttendanceBLL{
         }
         
         return nonAttendance;
+    }
+
+    @Override
+    public List<Object[]> getMonths() {
+        List<Object[]> monthsWithNonAttendances = new ArrayList<>();
+        
+        try {
+            HibernateUtil.beginTransaction();
+            monthsWithNonAttendances = nonAttendanceDAO.getMonths();
+            HibernateUtil.commitTransaction();
+        } catch (HibernateException ex) {            
+            HibernateUtil.rollbackTransaction();
+            throw ex;
+        }
+        
+        return monthsWithNonAttendances;
     }
 
 }

@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.jcmg.hibernate.entities.User"%>
 <%@page import="org.jcmg.hibernate.entities.Message"%>
 <%@page import="java.util.List"%>
@@ -60,23 +61,16 @@
             <div class="inbox-content"><table class="table table-striped table-advance table-hover">
                     <thead>
                         <tr>
-                            <th colspan="3">
-                    <div class="checker"><span><input type="checkbox" class="mail-checkbox mail-group-checkbox"></span></div>                    
+                            <th colspan="3">                    
                     </th>
                     <th class="pagination-control" colspan="3">
-                        <span class="pagination-info">
-                            1-4 of <%=messages.size()%> </span>
-                        <a class="btn btn-sm blue">
-                            <i class="fa fa-angle-left"></i>
-                        </a>
-                        <a class="btn btn-sm blue">
-                            <i class="fa fa-angle-right"></i>
-                        </a>
+                        
                     </th>
                     </tr>
                     </thead>
                     <tbody>
                         <% User user = (User) request.getSession().getAttribute("user");
+                           SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                             for (Message message : messages) {
                                 if (message.getUserBySender().getUserId() != user.getUserId()) {
                                     String classRead = message.getRead() ? "" : "unread";
@@ -101,8 +95,8 @@
                             <td class="view-message inbox-small-cells">
                                 <a class="btn purple btnMessage" data-target="#full-width" data-toggle="modal">Ver</a>
                             </td>
-                            <td class="view-message text-right message-date">
-                                <%=message.getDate()%>
+                            <td class="view-message text-right message-date">                                
+                                <%=sdf.format(message.getDate())%>
                             </td>
 
                         </tr>        

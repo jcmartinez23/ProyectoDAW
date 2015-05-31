@@ -1,3 +1,5 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.lang.String"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Set"%>
 <%@page import="org.jcmg.hibernate.entities.NonAttendance"%>
@@ -9,11 +11,12 @@
     <div class="col-md-12">
         <!-- BEGIN PAGE TITLE & BREADCRUMB-->
         <h3 class="page-title">
-            NOMBREMPRESA <small>informe de matriculación</small>
+            NOMBREMPRESA <small>informe de asistencia, para mas información
+                descargar excel</small>
         </h3>
         <ul class="page-breadcrumb breadcrumb">
             <li class="btn-group">
-                <a href="RegistrationSheetGenerator" target="_blank">
+                <a href="AttendanceSheetGenerator" target="_blank">
                     <button type="button" class="btn blue">
                         <span>
                             Exportar a Excel
@@ -36,7 +39,7 @@
             </li>
             <li>
                 <a href="#">
-                    Informe de Matriculación
+                    Informe de Asistencia
                 </a>
             </li>
         </ul>
@@ -49,52 +52,54 @@
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-globe"></i> Matriculaciones
-                </div>               
+                    <i class="fa fa-globe"></i> Asistencia
+                </div>        
+                <div class="actions">
+                    <div class="btn-group">
+                        <select class="form-control input-small">
+                            <option>Selecciona</option>
+                            <% List<Object[]> months = (List<Object[]>) request.getSession().getAttribute("months");
+                                for (Object[] month : months) { %>
+                                <option value="<%=month[0] + "/" + month[1]%>"><%=month[0] + "/" + month[1]%></option>                            
+                            <%}%>
+                        </select>
+                    </div>                                                
+                        <a href="GetAssistanceDateRangeAJAX?month=05/2015">Test</a>
+                </div>
             </div>
             <div class="portlet-body">
                 <table class="table table-striped table-bordered table-hover table-full-width dataTable" id="sample_2" aria-describedby="sample_2_info" style="width: 1065px;">
                     <thead>
                         <tr role="row">
-                            <th style="width: 198px;">Correo</th>
-                            <th style="width: 198px;">Nombre</th>
-                            <th style="width: 198px;">Grupo</th>
-                            <th style="width: 198px;">Faltas sin justificar</th>
+                            <th style="width: 168px;">Correo</th>
+                            <th style="width: 168px;">Nombre</th>
+                            <th style="width: 168px;">Grupo</th>
+                            <th style="width: 168px;">No Justificadas</th>
+                            <th style="width: 168px;">Justificadas</th>
+                            <th style="width: 168px;">Totales</th>                            
                         </tr>
                     </thead>
-                    <tbody role="alert" aria-live="polite" aria-relevant="all">
-                        <% List<Student> students = (List<Student>) request.getSession().getAttribute("companyStudents");
-
-                            for (Student student : students) {
-                                User user = student.getUser();
-                        %>
+                    <tbody role="alert" aria-live="polite" aria-relevant="all">                        
                         <tr>
                             <td class=" ">
-                                <%=user.getMail()%>
+                                asdas@mail.com
                             </td><td class=" sorting_1">
-                                <%=user.getFirstName()%>
-                                <%=user.getLastName()%>
+                                Luis
+                                Perel
                             </td>
                             <td class=" ">
-                                <%=student.getGroup().getGroupCode()%>
+                                ING02
                             </td>                            
                             <td class=" ">
-                                <% Set nonAttendances = student.getNonAttendances();
-                                    Iterator it = nonAttendances.iterator();
-
-                                    int notJustifiedAttendances = 0;
-                                    while (it.hasNext()) {
-                                        NonAttendance na = (NonAttendance) it.next();
-                                        if (!na.isProof()) {
-                                            notJustifiedAttendances++;
-                                        }
-                                    }
-                                %>
-
-                                <%=notJustifiedAttendances%>
+                                0
                             </td>
-                        </tr>         
-                        <%}%>
+                            <td class=" ">
+                                0
+                            </td>
+                            <td class=" ">
+                                0
+                            </td>                            
+                        </tr>                                 
                     </tbody>
                 </table>
                 <div class="row">

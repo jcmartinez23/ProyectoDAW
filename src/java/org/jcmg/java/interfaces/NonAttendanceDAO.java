@@ -1,5 +1,6 @@
 package org.jcmg.java.interfaces;
 
+import java.util.Date;
 import java.util.List;
 import org.jcmg.hibernate.entities.NonAttendance;
 import org.jcmg.hibernate.entities.Student;
@@ -13,4 +14,6 @@ public interface NonAttendanceDAO extends GenericDAO<NonAttendance, Integer>{
     public List<NonAttendance> listByStudent(Student student, Boolean selectJustified);       
 
     public void update(NonAttendance entity);
+
+    public List<Object[]> getMonths();
 }

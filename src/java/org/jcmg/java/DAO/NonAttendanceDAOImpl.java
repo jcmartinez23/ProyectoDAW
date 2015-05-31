@@ -1,8 +1,10 @@
 package org.jcmg.java.DAO;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.jcmg.hibernate.entities.NonAttendance;
@@ -33,5 +35,14 @@ public class NonAttendanceDAOImpl extends GenericDAOImpl<NonAttendance, Integer>
     public void update(NonAttendance entity) {
         Session hibernateSession = this.getSession();        
         hibernateSession.update(entity);
+    }
+
+    @Override
+    public List<Object[]> getMonths() {
+        List<Object[]> months  = new ArrayList<>();
+        Session hibernateSession = this.getSession();
+        Query query = hibernateSession.createQuery("select distinct month(n.date), year(n.date) from NonAttendance n");        
+        months = query.list();
+        return months;
     }
 }

@@ -1,6 +1,8 @@
 package org.jcmg.java.BLL;
 
+//import java.util.ArrayList;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.jcmg.hibernate.entities.Company;
@@ -105,6 +107,11 @@ public class StudentBLLImpl implements StudentBLL {
         }
         
         return students;
+    }
+
+    @Override
+    public List<Student> getByNonAttendanceMonth(Date parsedDate) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
