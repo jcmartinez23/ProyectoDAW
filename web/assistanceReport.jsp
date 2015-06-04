@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="org.jcmg.hibernate.entities.Company"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.lang.String"%>
 <%@page import="java.util.Iterator"%>
@@ -11,8 +13,9 @@
     <div class="col-md-12">
         <!-- BEGIN PAGE TITLE & BREADCRUMB-->
         <h3 class="page-title">
-            NOMBREMPRESA <small>informe de asistencia, para mas información
-                descargar excel</small>
+            <% Company company = (Company) request.getSession().getAttribute("company");%>
+            <%=company.getName()%>  <small>informe de asistencia, para mas información
+                descargar excel</small>                        
         </h3>
         <ul class="page-breadcrumb breadcrumb">
             <li class="btn-group">
@@ -33,7 +36,7 @@
             </li>
             <li>
                 <a href="#">
-                    EMPRESA
+                    <%=company.getName()%>
                 </a>
                 <i class="fa fa-angle-right"></i>
             </li>
@@ -52,20 +55,8 @@
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-globe"></i> Asistencia
+                    <i class="fa fa-globe"></i> Asistencia (Primeras 50)
                 </div>        
-                <div class="actions">
-                    <div class="btn-group">
-                        <select class="form-control input-small">
-                            <option>Selecciona</option>
-                            <% List<Object[]> months = (List<Object[]>) request.getSession().getAttribute("months");
-                                for (Object[] month : months) { %>
-                                <option value="<%=month[0] + "/" + month[1]%>"><%=month[0] + "/" + month[1]%></option>                            
-                            <%}%>
-                        </select>
-                    </div>                                                
-                        <a href="GetAssistanceDateRangeAJAX?month=05/2015">Test</a>
-                </div>
             </div>
             <div class="portlet-body">
                 <table class="table table-striped table-bordered table-hover table-full-width dataTable" id="sample_2" aria-describedby="sample_2_info" style="width: 1065px;">
@@ -74,63 +65,43 @@
                             <th style="width: 168px;">Correo</th>
                             <th style="width: 168px;">Nombre</th>
                             <th style="width: 168px;">Grupo</th>
-                            <th style="width: 168px;">No Justificadas</th>
-                            <th style="width: 168px;">Justificadas</th>
-                            <th style="width: 168px;">Totales</th>                            
+                            <th style="width: 168px;">Fecha</th>
+                            <th style="width: 168px;">Justificada</th>                                                
                         </tr>
-                    </thead>
+                    </thead>                             
                     <tbody role="alert" aria-live="polite" aria-relevant="all">                        
+                        <% List<Student> students = (List<Student>) request.getSession().getAttribute("companyStudents");
+                           SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                           int nonAttendanceCounter = 0;
+                            for (Student student : students) {
+                                Set nonAttendances = student.getNonAttendances();
+                                Iterator nonAttIterator = nonAttendances.iterator();
+
+                                while (nonAttIterator.hasNext() && nonAttendanceCounter < 50) {
+                                    nonAttendanceCounter++;                                
+                                    NonAttendance nonAttendance = (NonAttendance) nonAttIterator.next();
+                        %>           
                         <tr>
                             <td class=" ">
-                                asdas@mail.com
+                                <%=student.getUser().getMail()%>
                             </td><td class=" sorting_1">
-                                Luis
-                                Perel
+                                <%=student.getUser().getFirstName()%>
+                                <%=student.getUser().getLastName()%>
                             </td>
                             <td class=" ">
-                                ING02
+                                <%=student.getGroup().getGroupCode()%>
                             </td>                            
                             <td class=" ">
-                                0
-                            </td>
+                                <%=sdf.format(nonAttendance.getDate())%>
+                            </td>       
                             <td class=" ">
-                                0
-                            </td>
-                            <td class=" ">
-                                0
-                            </td>                            
-                        </tr>                                 
+                                <%=nonAttendance.isProof()?"Si":"No"%>
+                            </td>                                            
+                        </tr>           
+                        <%}
+                            }%>
                     </tbody>
-                </table>
-                <div class="row">
-                    <div class="col-md-5 col-sm-12">
-                        <div class="dataTables_info" id="sample_2_info">Showing 1 to 20 of 43 entries</div>                        
-                    </div>
-                    <div class="col-md-7 col-sm-12">
-                        <div class="dataTables_paginate paging_bootstrap">
-                            <ul class="pagination" style="visibility: visible;">
-                                <li class="prev disabled">
-                                    <a href="#" title="Previous">
-                                        <i class="fa fa-angle-left"></i></a>
-                                </li>
-                                <li class="active">
-                                    <a href="#">1</a>
-                                </li>
-                                <li>
-                                    <a href="#">2</a>
-                                </li>
-                                <li>
-                                    <a href="#">3</a>
-                                </li>
-                                <li class="next">
-                                    <a href="#" title="Next">
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                </table>                
             </div>            
         </div>
     </div>

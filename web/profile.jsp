@@ -8,7 +8,7 @@
         <ul class="page-breadcrumb breadcrumb">
             <li>
                 <i class="fa fa-home"></i>
-                <a href="index.html">
+                <a href="Controller">
                     Mi perfil
                 </a>
             </li>
@@ -38,7 +38,7 @@
                         <div class="col-md-3">
                             <ul class="list-unstyled profile-nav">
                                 <li>
-                                    <% String image = user.getAvatar() != null ? user.getAvatar() : "profile.jpg";%>
+                                    <% String image = user.getAvatar() != null ? user.getAvatar() : "profile";%>
                                     <img src="profileimg/<%=image%>.jpg" class="img-responsive" alt=""/>
                                 </li>                                                                
                             </ul>
@@ -82,11 +82,13 @@
                                     <span class="after">
                                     </span>
                                 </li>
+                                <!--
                                 <li>
                                     <a data-toggle="tab" href="#tab_2-2">
                                         <i class="fa fa-picture-o"></i> Cambiar Avatar
                                     </a>
                                 </li>
+                                -->
                                 <li>
                                     <a data-toggle="tab" href="#tab_3-3">
                                         <i class="fa fa-lock"></i> Cambiar Contraseña

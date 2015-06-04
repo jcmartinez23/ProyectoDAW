@@ -17,4 +17,6 @@ public interface StudentBLL extends GenericBLL<Student> {
     public List<Student> listByGroup(Group group);
 
     public List<Student> getByNonAttendanceMonth(Date parsedDate);
+
+    public List<Student> listByCompanyPaged(Company company, Integer pageNumber);
 }

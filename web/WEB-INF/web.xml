@@ -12,6 +12,10 @@
         <servlet-name>RegistrationSheetGenerator</servlet-name>
         <servlet-class>org.jcmg.java.controller.RegistrationSheetGenerator</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AttendanceSheetGenerator</servlet-name>
+        <servlet-class>org.jcmg.java.controller.AttendanceSheetGenerator</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
         <url-pattern>/Controller</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>RegistrationSheetGenerator</servlet-name>
         <url-pattern>/RegistrationSheetGenerator</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AttendanceSheetGenerator</servlet-name>
+        <url-pattern>/AttendanceSheetGenerator</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

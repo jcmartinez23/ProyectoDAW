@@ -23,7 +23,7 @@
                 </a>
             </li>            
             <li>
-                <a href="Controller?GetUsersGroup">
+                <a href="Controller?action=GetUsersGroup">
                     <i class="fa fa-group"></i>
                     <span class="title">
                         Mi Grupo

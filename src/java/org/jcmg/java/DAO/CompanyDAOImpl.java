@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
+import org.hibernate.transform.ResultTransformer;
 import org.jcmg.hibernate.entities.Company;
 import org.jcmg.hibernate.entities.User;
 import org.jcmg.java.interfaces.CompanyDAO;
@@ -49,6 +50,7 @@ public class CompanyDAOImpl extends GenericDAOImpl<Company, String> implements C
         List<Company> companies = new ArrayList<>();
         Criteria criteria = hibernateSession.createCriteria(aClass);
         criteria.setFetchMode("students", FetchMode.JOIN);
+        criteria.setResultTransformer(criteria.DISTINCT_ROOT_ENTITY);
         companies = criteria.list();
         return companies;
     }

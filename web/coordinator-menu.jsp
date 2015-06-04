@@ -46,7 +46,7 @@
                 </a>
             </li>   
             <li class="last">
-                <a href="Controller?action=GetRegistration">
+                <a href="Controller?action=GetRegistration&page=0">
                     <i class="fa fa-folder"></i>
                     <span class="title">
                         Informe de Matrícula

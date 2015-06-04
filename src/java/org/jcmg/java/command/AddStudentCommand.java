@@ -27,8 +27,8 @@ public class AddStudentCommand extends Command {
         newUser.setPhone(request.getParameter("phone"));
         newUser.setUserType('E');
         
-        String passwordRandom = Long.toHexString(Double.doubleToLongBits(Math.random()));
-        newUser.setPassword(passwordRandom);
+        //String passwordRandom = Long.toHexString(Double.doubleToLongBits(Math.random()));
+        newUser.setPassword("12345.aa");
         
         UserBLL userBLL = new UserBLLImpl();
         userBLL.save(newUser);

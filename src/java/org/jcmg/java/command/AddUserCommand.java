@@ -22,8 +22,8 @@ public class AddUserCommand extends Command {
         newUser.setPhone(request.getParameter("phone"));
         newUser.setUserType(request.getParameter("userType").charAt(0));
         
-        String passwordRandom = Long.toHexString(Double.doubleToLongBits(Math.random()));
-        newUser.setPassword(passwordRandom);
+        //String passwordRandom = Long.toHexString(Double.doubleToLongBits(Math.random()));
+        newUser.setPassword("12345.aa");
         
         UserBLL userBLL = new UserBLLImpl();
         userBLL.save(newUser);

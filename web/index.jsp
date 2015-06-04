@@ -13,7 +13,7 @@
     <!--<![endif]-->
     <head>
         <meta charset="utf-8"/>
-        <title>Learning</title>
+        <title>LangIT</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <meta content="" name="description"/>
@@ -86,7 +86,8 @@
                                     <li>
                                         <a>
                                             <span class="photo">
-                                                <img src="profileimg/<%=message.getUserBySender().getUserId()%>.jpg" alt=""/>
+                                                <% String image = message.getUserBySender().getAvatar() != null ? message.getUserBySender().getAvatar() : "profile";%>
+                                                <img src="profileimg/<%=image%>.jpg" alt=""/>                                                
                                             </span>
                                             <span class="subject">                                    
                                                 <span class="from">
@@ -118,8 +119,8 @@
                     %>
                     <li class="dropdown user">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <% String image = user.getAvatar() != null ? user.getAvatar() : "profile.jpg";%>
-                            <img src="profileimg/<%=user.getUserId()%>.jpg" style="width: 40px;" alt=""/>
+                            <% String image = user.getAvatar() != null ? user.getAvatar() : "profile";%>
+                            <img src="profileimg/<%=image%>.jpg" style="width: 33px;" alt=""/>
                             <span class="username">
                                 <%=user.getFirstName()%> <%=user.getLastName()%>
                             </span>

@@ -21,4 +21,6 @@ public interface StudentDAO extends GenericDAO<Student, Integer> {
     public Student find(Student entity);
     
     public List<Student> getByNonAttendanceMonth(Date parsedDate);
+
+    public List<Student> listByCompanyPaged(Company company, Integer pageNumber);
 }

@@ -25,7 +25,7 @@ var Login = function () {
                     required: "La contraseña es obligatoria."
                 },
                 badLogin: {
-                    required: "Lo dastos son incorrectos."
+                    required: "Lo datos son incorrectos."
                 }
             },
             invalidHandler: function (event, validator) { //display error alert on form submit
@@ -47,16 +47,17 @@ var Login = function () {
             }
         });
 
-        $('.login-form input').keypress(function (e) {
+        $('.login-form input').keypress(function (e) {            
             if (e.which == 13) {
                 if ($('.login-form').validate().form()) {
+                    $.blockUI({ message: '<h1>Just a moment...</h1>' });
                     doLogIn(); //form validation success, call ajax form submit
                 }
                 return false;
             }
         });
 
-        function doLogIn() {
+        function doLogIn() {           
             $.ajax({
                 url: 'AJAXLogIn',
                 type: 'POST',
@@ -71,6 +72,7 @@ var Login = function () {
                     }
                 }
             });
+            $.unblockUI();
             return false;
         }
     }

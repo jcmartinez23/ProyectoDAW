@@ -61,11 +61,7 @@
                                 <option value="<%=coordinator.getUserId()%>"><%=coordinator.getMail()%></option>
                                 <%}%>
                             </select>
-                        </div>                        
-                        <div class="form-group">
-                            <label for="exampleInputFile1">Subir logo</label>
-                            <input type="file" id="inputPhoto" name="logo">
-                        </div>                        
+                        </div>                                                
                     </div>
                     <div class="form-actions">
                         <button type="submit" class="btn blue">Crear</button>
@@ -91,8 +87,7 @@
                 %>   
                 <div class="row portfolio-block">
                     <div class="col-md-7">
-                        <div class="portfolio-text">
-                            <img src="<%=company.getLogo()%>" alt="">
+                        <div class="portfolio-text">                            
                             <div class="portfolio-text-info">
                                 <h4><%=company.getName()%></h4>
                             </div>

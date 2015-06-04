@@ -21,28 +21,26 @@ public class SendMessageCommand extends Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         Message message = new Message();
-        
+
         // Sender
         User sender = (User) request.getSession().getAttribute("user");
         message.setUserBySender(sender);
-        
+
         // Reciever
         UserBLL userBLL = new UserBLLImpl();
         User reciever = userBLL.getByMail(new User(request.getParameter("reciever")));
-        message.setUserByReciever(reciever);
-        
-        message.setTitle(request.getParameter("title"));
-        message.setBody(request.getParameter("body"));        
-        message.setReadOk(Boolean.FALSE);               
-        
-        // Date        
-        message.setDate(new java.util.Date(System.currentTimeMillis()));
-        
-        
-        MessageBLL messageBLL = new MessageBLLImpl();
-        messageBLL.save(message);
-        
+
+        MessageBLL messageBLL = new MessageBLLImpl();        
+        if (reciever != null) {
+            message.setUserByReciever(reciever);
+            message.setTitle(request.getParameter("title"));
+            message.setBody(request.getParameter("body"));
+            message.setReadOk(Boolean.FALSE);
+            message.setDate(new java.util.Date(System.currentTimeMillis()));
+            messageBLL.save(message);
+        }                
+
         return "inbox.jsp";
     }
-    
+
 }

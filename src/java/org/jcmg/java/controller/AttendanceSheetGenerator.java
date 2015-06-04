@@ -1,6 +1,8 @@
 package org.jcmg.java.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -12,9 +14,6 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
 import org.jcmg.hibernate.entities.NonAttendance;
 import org.jcmg.hibernate.entities.Student;
@@ -24,7 +23,7 @@ import org.jcmg.hibernate.entities.User;
  *
  * @author juanca
  */
-public class RegistrationSheetGenerator extends HttpServlet {
+public class AttendanceSheetGenerator extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -55,7 +54,7 @@ public class RegistrationSheetGenerator extends HttpServlet {
         response.setHeader("Content-Disposition", "attachment; filename=filename.xls");
 
         HSSFWorkbook workbook = new HSSFWorkbook();
-        HSSFSheet worksheet = workbook.createSheet("Informe Matrícula");
+        HSSFSheet worksheet = workbook.createSheet("Informe Asistencia");
 
         // we create the title style
         HSSFCellStyle titleStyle = workbook.createCellStyle();
@@ -70,19 +69,48 @@ public class RegistrationSheetGenerator extends HttpServlet {
         titleRow.setRowStyle(titleStyle);
         titleRow.createCell(0).setCellValue("Correo");
         titleRow.createCell(1).setCellValue("Nombre");
-        titleRow.createCell(2).setCellValue("Grupo");        
+        titleRow.createCell(2).setCellValue("Grupo");
+        titleRow.createCell(3).setCellValue("Fecha");
+        titleRow.createCell(4).setCellValue("Justificada");
+        titleRow.createCell(5).setCellValue("Total Justificadas");
+        titleRow.createCell(6).setCellValue("Total sin Justificar");
+        titleRow.createCell(7).setCellValue("Total general");
 
         // we dump the data
-        List<Student> students = (List<Student>) request.getSession().getAttribute("studentsExcel");
-
+        List<Student> students = (List<Student>) request.getSession().getAttribute("companyStudents");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         for (int i = 1; i < students.size() + 1; i++) {
             Student student = students.get(i - 1);
             User user = student.getUser();
-            Row row = worksheet.createRow(i);
 
-            row.createCell(0).setCellValue(user.getMail());
-            row.createCell(1).setCellValue(user.getFirstName() + " " + user.getLastName());
-            row.createCell(2).setCellValue(student.getGroup() != null ? student.getGroup().getGroupCode() : "Sin asignar");
+            Set nonAttendances = student.getNonAttendances();
+            Iterator it = nonAttendances.iterator();
+
+            int notJustifiedAttendances = 0;
+            int actualAttendance = 0;            
+            while (it.hasNext()) {
+                int actualRow = i + actualAttendance;
+                Row row = worksheet.createRow(actualRow);
+                row.createCell(0).setCellValue(user.getMail());
+                row.createCell(1).setCellValue(user.getFirstName() + " " + user.getLastName());
+                row.createCell(2).setCellValue(student.getGroup() != null ? student.getGroup().getGroupCode() : "Sin asignar");
+
+                NonAttendance na = (NonAttendance) it.next();
+                row.createCell(3).setCellValue(sdf.format(na.getDate()));
+                row.createCell(4).setCellValue(na.isProof() ? "Si" : "No");
+                if (!na.isProof()) {
+                    notJustifiedAttendances++;
+                }
+
+                actualAttendance++;
+
+                if (actualAttendance == nonAttendances.size()) {
+                    row.createCell(5).setCellValue(nonAttendances.size() - notJustifiedAttendances);
+                    row.createCell(6).setCellValue(notJustifiedAttendances);
+                    row.createCell(7).setCellValue(nonAttendances.size());
+                }
+            }
+
         }
 
         workbook.write(response.getOutputStream()); // Write workbook to response.

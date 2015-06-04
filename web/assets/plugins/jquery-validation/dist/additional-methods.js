@@ -53,6 +53,10 @@ jQuery.validator.addMethod("lettersonly", function(value, element) {
 	return this.optional(element) || /^[a-z]+$/i.test(value);
 }, "Solo letras, por favor");
 
+jQuery.validator.addMethod("namesurname", function(value, element) {
+	return this.optional(element) || /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/.test(value);
+}, "Introduce un nómbre o apellido válido (Sin números ni carácteres extraños)");
+
 jQuery.validator.addMethod("nowhitespace", function(value, element) {
 	return this.optional(element) || /^\S+$/i.test(value);
 }, "No white space please");

@@ -33,9 +33,13 @@
                         <div class="col-md-3">
                             <ul class="list-unstyled profile-nav">
                                 <li>
-                                    <% String image = user.getAvatar() != null ? user.getAvatar() : "profile.jpg";%>
+                                    <% String image = user.getAvatar() != null ? user.getAvatar() : "profile";%>
                                     <img src="profileimg/<%=image%>.jpg" class="img-responsive" alt=""/>
-                                </li>                                                                
+                                </li>      
+                                <li>
+                                    <a href="Controller?action=NewMessage&mail=<%=user.getMail()%>" class="btn default btn-xs blue edit-attendance">
+                                    Enviar Mensaje</a>
+                                </li>    
                             </ul>
                         </div>
                         <div class="col-md-9">

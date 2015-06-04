@@ -13,10 +13,8 @@
                         <div class="form-group">     
                             <label>Destinaterio</label>
                             <div class="input-group">                                
-                                <input type="text" class="form-control" placeholder="Correo destino" name="reciever">
-                                <span class="input-group-btn">
-                                    <button class="btn blue" type="button">Comprobar!</button>
-                                </span>
+                                <% String mailUser = (String) request.getAttribute("userToSend"); %>
+                                <input type="text" class="form-control" placeholder="Correo destino" name="reciever" value="<%=mailUser == null || mailUser == ""? "":mailUser%>">                                
                             </div>
                         </div>
                         <div class="form-group">

@@ -60,8 +60,7 @@
                         <tr role="row">
                             <th style="width: 198px;">Correo</th>
                             <th style="width: 198px;">Nombre</th>
-                            <th style="width: 198px;">Grupo</th>
-                            <th style="width: 198px;">Faltas sin justificar</th>
+                            <th style="width: 198px;">Grupo</th>                            
                         </tr>
                     </thead>
                     <tbody role="alert" aria-live="polite" aria-relevant="all">
@@ -77,48 +76,29 @@
                                 <%=user.getLastName()%>
                             </td>
                             <td class=" ">
-                                <%=student.getGroup().getGroupCode()%>
-                            </td>                            
-                            <td class=" ">
-                                <% Set nonAttendances = student.getNonAttendances();
-                                    Iterator it = nonAttendances.iterator();
-                                    int notJustifiedAttendances = 0;
-                                    while (it.hasNext()) {
-                                        NonAttendance na = (NonAttendance) it.next();
-                                        if (!na.isProof()) {
-                                            notJustifiedAttendances++;
-                                        }
-                                    }
-                                %>
-
-                                <%=notJustifiedAttendances%>
-                            </td>
+                                <%=student.getGroup() != null ? student.getGroup().getGroupCode() : "Sin asignar"%>
+                            </td>                                                        
                         </tr>         
                         <%}%>
                     </tbody>
                 </table>
-                <div class="row">
-                    <div class="col-md-5 col-sm-12">
-                        <div class="dataTables_info" id="sample_2_info">Showing 1 to 20 of 43 entries</div>                        
-                    </div>
+                <div class="row">                    
                     <div class="col-md-7 col-sm-12">
                         <div class="dataTables_paginate paging_bootstrap">
                             <ul class="pagination" style="visibility: visible;">
-                                <li class="prev disabled">
-                                    <a href="#" title="Previous">
+                                <% int thisPage = (int)request.getAttribute("actualPage");%>                                
+                                <% int maxPages = (int)request.getSession().getAttribute("maxPages");%>
+                                <li class="prev <%=thisPage == 0?"hidden":""%>">
+                                    <a href="Controller?action=GetRegistration&page=<%=thisPage - 1%>" title="Previous">
                                         <i class="fa fa-angle-left"></i></a>
                                 </li>
-                                <li class="active">
-                                    <a href="#">1</a>
-                                </li>
-                                <li>
-                                    <a href="#">2</a>
-                                </li>
-                                <li>
-                                    <a href="#">3</a>
-                                </li>
-                                <li class="next">
-                                    <a href="#" title="Next">
+                                <% for(int i = 0; i < maxPages + 1; i++) { %>
+                                <li class="<%=i == thisPage?"active":""%>">
+                                    <a href="Controller?action=GetRegistration&page=<%=i%>"><%=i+1%></a>
+                                </li>                              
+                                <%}%>
+                                <li class="next <%=thisPage == maxPages?"hidden":""%>">
+                                    <a href="Controller?action=GetRegistration&page=<%=thisPage + 1%>" title="Next">
                                         <i class="fa fa-angle-right"></i>
                                     </a>
                                 </li>

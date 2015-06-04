@@ -1,5 +1,5 @@
 /**
-Core script to handle the entire theme and core functions
+Core script to handle the appearance and core functions
 **/
 var App = function () {
 

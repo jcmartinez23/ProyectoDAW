@@ -141,7 +141,7 @@ var FormValidation = function () {
                 rules: {
                     firstName: {                        
                         required: true,
-                        lettersonly: true
+                        namesurname: true
                     },
                     mail: {
                         required: true,
@@ -149,7 +149,7 @@ var FormValidation = function () {
                     },
                     lastName: {                                                
                         required: true,
-                        lettersonly: true
+                        namesurname: true
                     },
                     phone: {
                         required: true,

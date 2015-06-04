@@ -11,6 +11,12 @@ public class NewMessageCommand extends Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        String userToSend = request.getParameter("mail");
+        
+        if (userToSend != null || userToSend != "") {
+            request.setAttribute("userToSend", userToSend);
+        }
+        
         return "newMessage.jsp";
     }
 

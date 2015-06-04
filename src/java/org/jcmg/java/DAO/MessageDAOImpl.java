@@ -23,7 +23,7 @@ public class MessageDAOImpl extends GenericDAOImpl<Message, Integer> implements 
         Criteria criteriaMessage = session.createCriteria(Message.class);
         criteriaMessage.add(Restrictions.eq("userByReciever", user));
         if (!includeRead) {
-            criteriaMessage.add(Restrictions.eq("read", includeRead));
+            criteriaMessage.add(Restrictions.eq("readOk", includeRead));
         }        
         criteriaMessage.createCriteria("userBySender", JoinType.INNER_JOIN);   
         messages = criteriaMessage.list();

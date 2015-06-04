@@ -111,4 +111,21 @@ public class StudentBLLImpl implements StudentBLL {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public List<Student> listByCompanyPaged(Company company, Integer pageNumber) {
+        List<Student> students = new ArrayList<>();
+        
+        try {
+            HibernateUtil.beginTransaction();
+            students = studentDAO.listByCompanyPaged(company, pageNumber);
+            HibernateUtil.commitTransaction();
+        } catch (HibernateException e) {
+            System.out.println(e.getMessage());
+            HibernateUtil.rollbackTransaction();
+            throw e;
+        }
+        
+        return students;
+    }
+
 }

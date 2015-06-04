@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
 import org.jcmg.hibernate.entities.Company;
@@ -27,7 +28,7 @@ public class StudentDAOImpl extends GenericDAOImpl<Student, Integer> implements 
         criteria.add(Restrictions.eq("userId", entity.getUser().getUserId()));
         criteria.createCriteria("user", JoinType.INNER_JOIN);
         criteria.createCriteria("company", JoinType.INNER_JOIN);
-        criteria.createCriteria("group", JoinType.INNER_JOIN);
+        criteria.createCriteria("group", JoinType.LEFT_OUTER_JOIN);
 
         student = (Student) criteria.uniqueResult();
 
@@ -37,15 +38,14 @@ public class StudentDAOImpl extends GenericDAOImpl<Student, Integer> implements 
     @Override
     public List<Student> listByCompany(Company company) {
         Session session = HibernateUtil.getSession();
-        //Query query = session.createQuery("from Student s inner join s.user u");
+        
         Criteria criteriaStudent = session.createCriteria(Student.class);
         criteriaStudent.add(Restrictions.eq("company", company));
         criteriaStudent.createCriteria("group", JoinType.LEFT_OUTER_JOIN);
         criteriaStudent.createCriteria("user", JoinType.INNER_JOIN);
         criteriaStudent.setFetchMode("nonAttendances", FetchMode.JOIN);
         criteriaStudent.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-        //criteriaStudent.setMaxResults(1);
-        //criteriaStudent.setFirstResult(0);
+        
         List<Student> students = criteriaStudent.list();
         return students;
     }
@@ -53,11 +53,13 @@ public class StudentDAOImpl extends GenericDAOImpl<Student, Integer> implements 
     @Override
     public List<Student> listByGroup(Group group) {
         Session session = HibernateUtil.getSession();
+        
         Criteria criteriaStudent = session.createCriteria(Student.class);
         criteriaStudent.add(Restrictions.eq("group", group));
         criteriaStudent.createCriteria("group", JoinType.LEFT_OUTER_JOIN);
         criteriaStudent.createCriteria("user", JoinType.INNER_JOIN);
         criteriaStudent.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        
         List<Student> students = criteriaStudent.list();
         return students;
     }
@@ -71,15 +73,33 @@ public class StudentDAOImpl extends GenericDAOImpl<Student, Integer> implements 
     @Override
     public List<Student> getByNonAttendanceMonth(Date parsedDate) {
         Session session = HibernateUtil.getSession();        
-        //Query query = session.createQuery("from Student s inner join s.user u");
-        Criteria criteriaStudent = session.createCriteria(Student.class);
-        //criteriaStudent.add(null)
+        
+        Criteria criteriaStudent = session.createCriteria(Student.class);        
         criteriaStudent.createCriteria("group", JoinType.LEFT_OUTER_JOIN);
         criteriaStudent.createCriteria("user", JoinType.INNER_JOIN);
         criteriaStudent.setFetchMode("nonAttendances", FetchMode.JOIN);
         criteriaStudent.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-        //criteriaStudent.setMaxResults(1);
-        //criteriaStudent.setFirstResult(0);
+        
+        List<Student> students = criteriaStudent.list();
+        return students;
+    }
+
+    @Override
+    public List<Student> listByCompanyPaged(Company company, Integer pageNumber) {
+        Session session = HibernateUtil.getSession();
+        
+        Criteria criteriaStudent = session.createCriteria(Student.class);
+        criteriaStudent.add(Restrictions.eq("company", company));
+        criteriaStudent.createCriteria("group", JoinType.LEFT_OUTER_JOIN);
+        criteriaStudent.createCriteria("user", JoinType.INNER_JOIN);
+        //criteriaStudent.setFetchMode("nonAttendances", FetchMode.JOIN);
+        criteriaStudent.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        //criteriaStudent.setProjection(Projections.distinct(Projections.property("userId")));
+
+        
+        criteriaStudent.setMaxResults(4);
+        criteriaStudent.setFirstResult(pageNumber * 4);
+        
         List<Student> students = criteriaStudent.list();
         return students;
     }
