@@ -1,5 +1,5 @@
 package org.jcmg.hibernate.entities;
-// Generated May 26, 2015 7:20:29 PM by Hibernate Tools 4.3.1
+// Generated Jun 3, 2015 8:18:55 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,7 +16,6 @@ public class Student  implements java.io.Serializable {
      private Group group;
      private User user;
      private Set nonAttendances = new HashSet(0);
-     private Set studentTakesExams = new HashSet(0);
 
     public Student() {
     }
@@ -26,12 +25,11 @@ public class Student  implements java.io.Serializable {
         this.company = company;
         this.user = user;
     }
-    public Student(Company company, Group group, User user, Set nonAttendances, Set studentTakesExams) {
+    public Student(Company company, Group group, User user, Set nonAttendances) {
        this.company = company;
        this.group = group;
        this.user = user;
        this.nonAttendances = nonAttendances;
-       this.studentTakesExams = studentTakesExams;
     }
    
     public int getUserId() {
@@ -68,13 +66,6 @@ public class Student  implements java.io.Serializable {
     
     public void setNonAttendances(Set nonAttendances) {
         this.nonAttendances = nonAttendances;
-    }
-    public Set getStudentTakesExams() {
-        return this.studentTakesExams;
-    }
-    
-    public void setStudentTakesExams(Set studentTakesExams) {
-        this.studentTakesExams = studentTakesExams;
     }
 
 

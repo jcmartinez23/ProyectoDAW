@@ -2,16 +2,44 @@
 <%@page import="java.util.List"%>
 <%@page import="org.jcmg.hibernate.entities.User"%>
 <div class="row">
-    <div class="col-1">
+    <div class="col-md-12">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+            Grupos <small>creación</small>
+        </h3>
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a href="Controller">
+                    Home
+                </a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a href="#">
+                    Grupos
+                </a>
+            </li>
+        </ul>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+</div>
+<!-- END PAGE HEADER-->
+<div class="row">
+    <div class="col-md-12">
         <!-- BEGIN SAMPLE FORM PORTLET-->
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-reorder"></i> Crear Usuario
+                    <i class="fa fa-reorder"></i> Crear Grupo
                 </div>                
             </div>
             <div class="portlet-body form" style="display: block;">
-                <form role="form" method="POST" action="Controller?action=AddGroup">
+                <form id="form-newGroup" role="form" method="POST" action="Controller?action=AddGroup" novalidate="novalidate">
+                    <div class="alert alert-danger display-hide">
+                        <button class="close" data-close="alert"></button>
+                        Faltan datos o hay datos erróneos! Comprueba el formulario.
+                    </div>
                     <div class="form-body">
                         <div class="form-group">
                             <label for="code">Código</label>

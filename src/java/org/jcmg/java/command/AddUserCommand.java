@@ -32,7 +32,7 @@ public class AddUserCommand extends Command {
             // INSERTAR PROFESOR
         }
         
-        return "createUser.jsp";
+        return "profile.jsp";
     }
 
 }

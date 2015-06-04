@@ -8,13 +8,10 @@ import org.hibernate.HibernateException;
 import org.jcmg.hibernate.entities.Company;
 import org.jcmg.hibernate.entities.Group;
 import org.jcmg.hibernate.entities.Student;
-import org.jcmg.hibernate.entities.User;
 import org.jcmg.java.DAO.HibernateUtil;
 import org.jcmg.java.DAO.StudentDAOImpl;
-import org.jcmg.java.DAO.UserDAOImpl;
 import org.jcmg.java.interfaces.StudentBLL;
 import org.jcmg.java.interfaces.StudentDAO;
-import org.jcmg.java.interfaces.UserDAO;
 
 /**
  *

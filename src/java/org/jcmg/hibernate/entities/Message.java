@@ -1,5 +1,5 @@
 package org.jcmg.hibernate.entities;
-// Generated May 26, 2015 7:20:29 PM by Hibernate Tools 4.3.1
+// Generated Jun 3, 2015 8:18:55 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -16,7 +16,7 @@ public class Message  implements java.io.Serializable {
      private String title;
      private String body;
      private Date date;
-     private Boolean read;
+     private Boolean readOk;
 
     public Message() {
     }
@@ -27,13 +27,13 @@ public class Message  implements java.io.Serializable {
         this.userBySender = userBySender;
         this.body = body;
     }
-    public Message(User userByReciever, User userBySender, String title, String body, Date date, Boolean read) {
+    public Message(User userByReciever, User userBySender, String title, String body, Date date, Boolean readOk) {
        this.userByReciever = userByReciever;
        this.userBySender = userBySender;
        this.title = title;
        this.body = body;
        this.date = date;
-       this.read = read;
+       this.readOk = readOk;
     }
    
     public Integer getMessageId() {
@@ -78,12 +78,12 @@ public class Message  implements java.io.Serializable {
     public void setDate(Date date) {
         this.date = date;
     }
-    public Boolean getRead() {
-        return this.read;
+    public Boolean getReadOk() {
+        return this.readOk;
     }
     
-    public void setRead(Boolean read) {
-        this.read = read;
+    public void setReadOk(Boolean readOk) {
+        this.readOk = readOk;
     }
 
 

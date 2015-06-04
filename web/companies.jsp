@@ -37,8 +37,12 @@
                 </div>                
             </div>
             <div class="portlet-body form" style="display: block;">
-                <form role="form" method="POST" action="Controller?action=AddCompany">
+                <form id="form-newCompany" role="form" method="POST" action="Controller?action=AddCompany" novalidate="novalidate">
                     <div class="form-body">
+                        <div class="alert alert-danger display-hide">
+                            <button class="close" data-close="alert"></button>
+                            Faltan datos o hay datos erróneos! Comprueba el formulario.
+                        </div>
                         <div class="form-group">
                             <label for="inputCIF">CIF</label>
                             <input type="text" class="form-control" id="inputCIF" placeholder="S2426686H" name="cif">                            
@@ -52,7 +56,7 @@
                             <select class="form-control" name="coordinator">
                                 <%
                                     List<User> coordinators = (List<User>) request.getSession().getAttribute("coordinators");
-                                    for(User coordinator : coordinators) {
+                                    for (User coordinator : coordinators) {
                                 %>
                                 <option value="<%=coordinator.getUserId()%>"><%=coordinator.getMail()%></option>
                                 <%}%>
@@ -81,10 +85,10 @@
                 </div>
             </div>
             <div class="portlet-body form">
-            <%
-                List<Company> companies = (List<Company>) request.getAttribute("companies");
-                for(Company company : companies) {
-            %>   
+                <%
+                    List<Company> companies = (List<Company>) request.getAttribute("companies");
+                    for (Company company : companies) {
+                %>   
                 <div class="row portfolio-block">
                     <div class="col-md-7">
                         <div class="portfolio-text">
@@ -95,16 +99,18 @@
                         </div>
                     </div>                    
                     <div class="col-md-3" style="float:right;">
+                        <%if (company.getStudents().size() == 0) {%>
                         <div class="portfolio-btn">
-                            <a href="#" class="btn bigicn-only">
+                            <a href="Controller?action=DeleteCompany&CIF=<%=company.getCif()%>" class="btn bigicn-only">
                                 <span>
-                                    Manage
+                                    Eliminar
                                 </span>
                             </a>
                         </div>
+                        <%}%>
                     </div>
                 </div>
-            <%}%>    
+                <%}%>    
             </div>
         </div>
         <!-- END SAMPLE FORM PORTLET-->

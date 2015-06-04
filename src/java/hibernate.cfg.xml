@@ -4,15 +4,13 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/proyecto?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/proyecto?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <mapping resource="org/jcmg/hibernate/entities/User.hbm.xml"/>
     <mapping resource="org/jcmg/hibernate/entities/Group.hbm.xml"/>
     <mapping resource="org/jcmg/hibernate/entities/Student.hbm.xml"/>
-    <mapping resource="org/jcmg/hibernate/entities/StudentTakesExam.hbm.xml"/>
     <mapping resource="org/jcmg/hibernate/entities/Company.hbm.xml"/>
-    <mapping resource="org/jcmg/hibernate/entities/Exam.hbm.xml"/>
     <mapping resource="org/jcmg/hibernate/entities/Teacher.hbm.xml"/>
     <mapping resource="org/jcmg/hibernate/entities/NonAttendance.hbm.xml"/>
     <mapping resource="org/jcmg/hibernate/entities/Message.hbm.xml"/>

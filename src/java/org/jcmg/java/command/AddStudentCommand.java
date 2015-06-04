@@ -42,7 +42,7 @@ public class AddStudentCommand extends Command {
         StudentBLL studentBLL = new StudentBLLImpl();
         studentBLL.save(student);
         
-        return "createStudentForm.jsp";
+        return "profile.jsp";
     }
 
 }

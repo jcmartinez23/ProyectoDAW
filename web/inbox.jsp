@@ -73,7 +73,7 @@
                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                             for (Message message : messages) {
                                 if (message.getUserBySender().getUserId() != user.getUserId()) {
-                                    String classRead = message.getRead() ? "" : "unread";
+                                    String classRead = message.getReadOk()? "" : "unread";
                         %>                 
 
                         <tr class="<%=classRead%>" data-messageid="1">

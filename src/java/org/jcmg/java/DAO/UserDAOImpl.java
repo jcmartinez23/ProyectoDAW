@@ -7,6 +7,7 @@ package org.jcmg.java.DAO;
 
 import java.util.List;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.jcmg.hibernate.entities.User;
 import org.jcmg.java.interfaces.UserDAO;
 
@@ -28,5 +29,11 @@ public class UserDAOImpl extends GenericDAOImpl<User, Integer> implements UserDA
         query.setParameter("type", type);
         users = query.list();
         return users;
+    }
+
+    @Override
+    public void update(User entity) {
+        Session hibernateSession = this.getSession();        
+        hibernateSession.update(entity);
     }
 }

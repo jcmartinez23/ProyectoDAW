@@ -44,6 +44,8 @@ public class StudentListCommand extends Command {
                 List<Student> groupStudents = studentBLL.listByGroup(group);
                 students.addAll(groupStudents);
             }
+            
+            request.getSession().setAttribute("groups", groups);
         }        
         
         request.getSession().setAttribute("students", students);

@@ -2,7 +2,6 @@ package org.jcmg.java.command;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,7 +33,7 @@ public class SendMessageCommand extends Command {
         
         message.setTitle(request.getParameter("title"));
         message.setBody(request.getParameter("body"));        
-        message.setRead(Boolean.FALSE);               
+        message.setReadOk(Boolean.FALSE);               
         
         // Date        
         message.setDate(new java.util.Date(System.currentTimeMillis()));

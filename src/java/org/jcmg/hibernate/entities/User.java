@@ -1,5 +1,5 @@
 package org.jcmg.hibernate.entities;
-// Generated May 26, 2015 7:20:29 PM by Hibernate Tools 4.3.1
+// Generated Jun 3, 2015 8:18:55 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -21,6 +21,8 @@ public class User  implements java.io.Serializable {
      private String pastimes;
      private String password;
      private String avatar;
+     private String aboutMe;
+     private String location;
      private Student student;
      private Set companies = new HashSet(0);
      private Teacher teacher;
@@ -33,7 +35,7 @@ public class User  implements java.io.Serializable {
     public User(String mail) {
         this.mail = mail;
     }
-    
+	
     public User(String mail, String password) {
         this.mail = mail;
         this.password = password;
@@ -47,7 +49,7 @@ public class User  implements java.io.Serializable {
         this.userType = userType;
         this.password = password;
     }
-    public User(String mail, String firstName, String lastName, String phone, char userType, String jobPosition, String pastimes, String password, String avatar, Student student, Set companies, Teacher teacher, Set messagesForReciever, Set messagesForSender) {
+    public User(String mail, String firstName, String lastName, String phone, char userType, String jobPosition, String pastimes, String password, String avatar, String aboutMe, String location, Student student, Set companies, Teacher teacher, Set messagesForReciever, Set messagesForSender) {
        this.mail = mail;
        this.firstName = firstName;
        this.lastName = lastName;
@@ -57,6 +59,8 @@ public class User  implements java.io.Serializable {
        this.pastimes = pastimes;
        this.password = password;
        this.avatar = avatar;
+       this.aboutMe = aboutMe;
+       this.location = location;
        this.student = student;
        this.companies = companies;
        this.teacher = teacher;
@@ -133,6 +137,20 @@ public class User  implements java.io.Serializable {
     
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+    public String getAboutMe() {
+        return this.aboutMe;
+    }
+    
+    public void setAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
+    }
+    public String getLocation() {
+        return this.location;
+    }
+    
+    public void setLocation(String location) {
+        this.location = location;
     }
     public Student getStudent() {
         return this.student;

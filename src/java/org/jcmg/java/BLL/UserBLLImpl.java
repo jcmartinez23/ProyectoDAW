@@ -27,14 +27,21 @@ public class UserBLLImpl implements UserBLL {
             userDAO.save(entity);
             HibernateUtil.commitTransaction();
         } catch (HibernateException ex) {
-            System.out.println("Handle your error here");
             HibernateUtil.rollbackTransaction();
+            throw ex;            
         }
     }
 
     @Override
     public void update(User entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            HibernateUtil.beginTransaction();
+            userDAO.update(entity);
+            HibernateUtil.commitTransaction();
+        } catch (HibernateException ex) {
+            HibernateUtil.rollbackTransaction();
+            throw ex;            
+        }
     }
 
     @Override

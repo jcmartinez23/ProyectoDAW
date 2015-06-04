@@ -44,7 +44,7 @@ public class AddGroupCommand extends Command {
         GroupBLL groupBLL = new GroupBLLImpl();
         groupBLL.save(group);
         
-        return "CreateGroupForm.jsp";
+        return "profile.jsp";
     }
 
 }

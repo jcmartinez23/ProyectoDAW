@@ -40,8 +40,7 @@ public class Controller extends HttpServlet {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        request.setAttribute("mainPage", nextPage);
-        System.out.println(nextPage);
+        request.setAttribute("mainPage", nextPage);        
         request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 

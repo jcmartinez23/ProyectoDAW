@@ -41,9 +41,17 @@ jQuery.validator.addMethod("alphanumeric", function(value, element) {
 	return this.optional(element) || /^\w+$/i.test(value);
 }, "Letters, numbers, and underscores only please");
 
+jQuery.validator.addMethod("groupCode", function(value, element) {
+	return this.optional(element) || /^ING[0-9]{2}$/i.test(value);
+}, "Introduce un tipo de grupo válido ej - ING99");
+
+jQuery.validator.addMethod("cif", function(value, element) {
+	return this.optional(element) || /^[ABEH][0-9]{8}$/i.test(value) || /^[KPQS][0-9]{7}[A-J]$/i.test(value) || /^[CDFGJLMNRUVW][0-9]{7}[0-9A-J]$/i.test(value);
+}, "Introduce un CIF válido ej - A58818501");
+
 jQuery.validator.addMethod("lettersonly", function(value, element) {
 	return this.optional(element) || /^[a-z]+$/i.test(value);
-}, "Letters only please");
+}, "Solo letras, por favor");
 
 jQuery.validator.addMethod("nowhitespace", function(value, element) {
 	return this.optional(element) || /^\S+$/i.test(value);
@@ -283,9 +291,9 @@ jQuery.validator.addMethod("dateNL", function(value, element) {
 /**
  * Dutch phone numbers have 10 digits (or 11 and start with +31).
  */
-jQuery.validator.addMethod("phoneNL", function(value, element) {
-	return this.optional(element) || /^((\+|00(\s|\s?\-\s?)?)31(\s|\s?\-\s?)?(\(0\)[\-\s]?)?|0)[1-9]((\s|\s?\-\s?)?[0-9]){8}$/.test(value);
-}, "Please specify a valid phone number.");
+jQuery.validator.addMethod("phoneES", function(value, element) {
+	return this.optional(element) ||  /^((\+?34([ \t|\-])?)?[9|6|7]((\d{1}([ \t|\-])?[0-9]{3})|(\d{2}([ \t|\-])?[0-9]{2}))([ \t|\-])?[0-9]{2}([ \t|\-])?[0-9]{2})$/.test(value);
+}, "Especifica un numero de teléfono válido.");
 
 jQuery.validator.addMethod("mobileNL", function(value, element) {
 	return this.optional(element) || /^((\+|00(\s|\s?\-\s?)?)31(\s|\s?\-\s?)?(\(0\)[\-\s]?)?|0)6((\s|\s?\-\s?)?[0-9]){8}$/.test(value);

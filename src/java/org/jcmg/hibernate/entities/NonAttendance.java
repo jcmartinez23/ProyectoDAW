@@ -1,5 +1,5 @@
 package org.jcmg.hibernate.entities;
-// Generated May 26, 2015 7:20:29 PM by Hibernate Tools 4.3.1
+// Generated Jun 3, 2015 8:18:55 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;

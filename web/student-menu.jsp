@@ -1,3 +1,4 @@
+<%@page import="org.jcmg.hibernate.entities.User"%>
 <div class="page-sidebar-wrapper">
     <div class="page-sidebar navbar-collapse collapse">
         <!-- add "navbar-no-scroll" class to disable the scrolling of the sidebar menu -->
@@ -22,7 +23,7 @@
                 </a>
             </li>            
             <li>
-                <a href="javascript:;">
+                <a href="Controller?GetUsersGroup">
                     <i class="fa fa-group"></i>
                     <span class="title">
                         Mi Grupo
@@ -30,7 +31,8 @@
                 </a>
             </li> 
             <li>
-                <a href="javascript:;">
+                <% User myCoordinator = (User) request.getSession().getAttribute("myCoordinator"); %>
+                <a href="Controller?action=ShowUserProfile&userMail=<%=myCoordinator.getMail()%>">
                     <i class="fa fa-star-o"></i>
                     <span class="title">
                         Mi Coordinador

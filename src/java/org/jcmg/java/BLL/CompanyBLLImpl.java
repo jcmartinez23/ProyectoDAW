@@ -27,6 +27,7 @@ public class CompanyBLLImpl implements CompanyBLL {
             HibernateUtil.commitTransaction();
         } catch (HibernateException ex) {
             HibernateUtil.rollbackTransaction();
+            throw ex;
         }
     }
 
@@ -37,7 +38,14 @@ public class CompanyBLLImpl implements CompanyBLL {
 
     @Override
     public void delete(Company entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            HibernateUtil.beginTransaction();
+            companyDAO.delete(entity);
+            HibernateUtil.commitTransaction();
+        } catch (HibernateException ex) {            
+            HibernateUtil.rollbackTransaction();
+            throw ex;
+        }
     }
 
     @Override
@@ -46,11 +54,11 @@ public class CompanyBLLImpl implements CompanyBLL {
 
         try {
             HibernateUtil.beginTransaction();
-            companies = companyDAO.findAll(Company.class);
+            companies = companyDAO.findAllWithStudents(Company.class);
             HibernateUtil.commitTransaction();
-        } catch (HibernateException ex) {
-            System.out.println("Handle your error here");
+        } catch (HibernateException ex) {            
             HibernateUtil.rollbackTransaction();
+            throw ex;
         }
 
         return companies;
@@ -62,11 +70,11 @@ public class CompanyBLLImpl implements CompanyBLL {
 
         try {
             HibernateUtil.beginTransaction();
-            company = companyDAO.findByID(Company.class, entity.getUser().getUserId());
+            company = companyDAO.findByCIF(entity);
             HibernateUtil.commitTransaction();
-        } catch (HibernateException ex) {
-            System.out.println("Handle your error here");
+        } catch (HibernateException ex) {            
             HibernateUtil.rollbackTransaction();
+            throw ex;
         }
 
         return company;
@@ -80,9 +88,9 @@ public class CompanyBLLImpl implements CompanyBLL {
             HibernateUtil.beginTransaction();
             company = companyDAO.findByCoordinator(coordinator);
             HibernateUtil.commitTransaction();
-        } catch (HibernateException ex) {
-            System.out.println(ex.getMessage());
+        } catch (HibernateException ex) {            
             HibernateUtil.rollbackTransaction();
+            throw ex;
         }
 
         return company;

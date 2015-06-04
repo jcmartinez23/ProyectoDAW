@@ -26,6 +26,8 @@ public class StudentDAOImpl extends GenericDAOImpl<Student, Integer> implements 
         Criteria criteria = session.createCriteria(Student.class);
         criteria.add(Restrictions.eq("userId", entity.getUser().getUserId()));
         criteria.createCriteria("user", JoinType.INNER_JOIN);
+        criteria.createCriteria("company", JoinType.INNER_JOIN);
+        criteria.createCriteria("group", JoinType.INNER_JOIN);
 
         student = (Student) criteria.uniqueResult();
 

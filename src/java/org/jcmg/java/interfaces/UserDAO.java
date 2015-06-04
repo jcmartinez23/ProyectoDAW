@@ -17,4 +17,6 @@ public interface UserDAO extends GenericDAO<User, Integer>{
     public User find(User entity);
     
     public List<User> findByType(Character type);
+
+    public void update(User entity);
 }

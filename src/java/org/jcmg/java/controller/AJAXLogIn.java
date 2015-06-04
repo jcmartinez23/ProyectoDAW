@@ -9,8 +9,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.jcmg.hibernate.entities.Company;
+import org.jcmg.hibernate.entities.Student;
 import org.jcmg.hibernate.entities.User;
+import org.jcmg.java.BLL.CompanyBLLImpl;
+import org.jcmg.java.BLL.StudentBLLImpl;
 import org.jcmg.java.BLL.UserBLLImpl;
+import org.jcmg.java.interfaces.CompanyBLL;
+import org.jcmg.java.interfaces.StudentBLL;
 import org.jcmg.java.interfaces.UserBLL;
 
 /**
@@ -89,9 +95,22 @@ public class AJAXLogIn extends HttpServlet {
                     menu = "coordinator-menu.jsp";
                     break;
                 case 'A':
-                    menu = "fullmenu.jsp";
+                    menu = "menu_admin.jsp";
                     break;
                 case 'E':
+                    Student student = new Student();
+                    student.setUser(user);
+                    StudentBLL studentBLL = new StudentBLLImpl();
+                    Student foundStudent = studentBLL.find(student);
+                    Company companyQuery = foundStudent.getCompany();
+                    
+                    CompanyBLL companyBLL = new CompanyBLLImpl();
+                    Company company = companyBLL.find(companyQuery);
+                    User coordinator = userBLL.find(company.getUser());
+                    
+                    request.getSession().setAttribute("myGroup", foundStudent.getGroup());
+                    request.getSession().setAttribute("myCoordinator", coordinator);
+                    
                     menu = "student-menu.jsp";
                     break;
             }

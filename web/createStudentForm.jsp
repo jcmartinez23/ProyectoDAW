@@ -8,7 +8,7 @@
                 </div>                
             </div>
             <div class="portlet-body form" style="display: block;">
-                <form role="form" method="POST" action="Controller?action=AddStudent">
+                <form id="form-createUsers" role="form" method="POST" action="Controller?action=AddStudent" novalidate="novalidate">
                     <div class="form-body">
                         <div class="form-group">
                             <label for="mail">Correo</label>

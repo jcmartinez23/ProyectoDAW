@@ -27,9 +27,10 @@ public class GetRegistrationCommand extends Command {
         StudentBLL studentBLL = new StudentBLLImpl();
         List<Student> students = studentBLL.listByCompany(company);
         
+        request.getSession().setAttribute("company", company);
         request.getSession().setAttribute("companyStudents", students);
         
-        return "registrationReport.jsp";
+        return "getRegistration.jsp";
     }
 
 }

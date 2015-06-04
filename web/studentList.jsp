@@ -40,7 +40,7 @@
         <div class="portlet">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-bell-o"></i>Alumnos
+                    <i class="fa fa-graduation-cap"></i>Alumnos
                 </div>                
             </div>
             <div class="portlet-body">
@@ -55,11 +55,11 @@
                                     <i class="fa fa-envelope"></i> Mail
                                 </th>
                                 <th class="hidden-xs">
-                                    <i class="fa fa-briefcase"></i> Grupo
+                                    <i class="fa fa-group"></i> Grupo
 
                                 </th>
                                 <th>
-                                    <i class="fa fa-shopping-cart"></i> Acción
+                                    <i class="fa fa-anchor"></i> Acción
                                 </th>
                             </tr>
                         </thead>
@@ -74,7 +74,7 @@
                                 <td class="highlight">
                                     <div class="success">
                                     </div>
-                                    <a href="#" class="student-fullName">
+                                    <a href="Controller?action=ShowUserProfile&userMail=<%=user.getMail()%>" class="student-fullName">
                                         <%=user.getFirstName()%>
                                         <%=user.getLastName()%>
                                     </a>

@@ -38,8 +38,8 @@
                         <div class="col-md-3">
                             <ul class="list-unstyled profile-nav">
                                 <li>
-                                    <% String image = user.getAvatar() != null ? user.getAvatar(): "profile.jpg";%>
-                                    <img src="profileimg/<%=user.getUserId()%>.jpg" class="img-responsive" alt=""/>
+                                    <% String image = user.getAvatar() != null ? user.getAvatar() : "profile.jpg";%>
+                                    <img src="profileimg/<%=image%>.jpg" class="img-responsive" alt=""/>
                                 </li>                                                                
                             </ul>
                         </div>
@@ -47,23 +47,21 @@
                             <div class="row">
                                 <div class="col-md-8 profile-info">
                                     <h1><%=user.getFirstName()%> <%=user.getLastName()%></h1>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt laoreet dolore magna aliquam tincidunt erat volutpat laoreet dolore magna aliquam tincidunt erat volutpat.
-                                    </p>
-                                    <p>
-                                        <a href="#">
-                                            www.mywebsite.com
-                                        </a>
-                                    </p>
+                                    <p>                                        
+                                        <%=user.getAboutMe() != null && user.getAboutMe() != "" ? user.getAboutMe() : "Esto está un poco vacío, rellena tu perfil!"%>
+                                    </p>                                    
                                     <ul class="list-inline">
                                         <li>
-                                            <i class="fa fa-map-marker"></i> LOCALIZACION
+                                            <i class="fa fa-map-marker"></i> <%=user.getLocation() != null && user.getLocation() != "" ? user.getLocation() : "Sin Especificar"%>
                                         </li>                                                                                
                                         <li>
-                                            <i class="fa fa-star"></i> <%=user.getJobPosition()%>
+                                            <i class="fa fa-star"></i> <%=user.getJobPosition() != null && user.getJobPosition() != "" ? user.getJobPosition() : "Sin Especificar"%>
                                         </li>
                                         <li>
-                                            <i class="fa fa-heart"></i> <%=user.getPastimes()%>
+                                            <i class="fa fa-heart"></i> <%=user.getPastimes() != null && user.getPastimes() != "" ? user.getPastimes() : "Sin Especificar"%>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-phone"></i> <%=user.getPhone()%>
                                         </li>
                                     </ul>
                                 </div>
@@ -99,36 +97,32 @@
                         <div class="col-md-9">
                             <div class="tab-content">
                                 <div id="tab_1-1" class="tab-pane active">
-                                    <form role="form" action="#">
+                                    <form role="form" action="Controller?action=UpdateUser" method="POST">
                                         <div class="form-group">
                                             <label class="control-label">Localización</label>
-                                            <input type="text" placeholder="Sagunto" class="form-control"/>
+                                            <input name="localization" type="text" value="<%=user.getLocation() != null && user.getLocation() != "" ? user.getLocation() : "Sin especificar"%>" class="form-control"/>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Nº de Telefono</label>
-                                            <input type="text" placeholder="<%=user.getPhone()%>" class="form-control"/>
+                                            <input name="phoneNumber" type="text" value="<%=user.getPhone()%>" class="form-control"/>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Intereses</label>
-                                            <input type="text" placeholder="<%=user.getPastimes()%>" class="form-control"/>
+                                            <input name="pastimes" type="text" value="<%=user.getPastimes() != null && user.getPastimes() != "" ? user.getPastimes() : "Sin especificar"%>" class="form-control"/>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Ocupación</label>
-                                            <input type="text" placeholder="<%=user.getJobPosition()%>" class="form-control"/>
+                                            <input name="jobPosition" type="text" value="<%=user.getJobPosition() != null && user.getJobPosition() != "" ? user.getJobPosition() : "Sin especificar"%>" class="form-control"/>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Sobre mí</label>
-                                            <textarea class="form-control" rows="3" placeholder="Soy Guay!"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">Web</label>
-                                            <input type="text" placeholder="http://www.miweb.com" class="form-control"/>
-                                        </div>
+                                            <textarea name="aboutMe" class="form-control" rows="3" ><%=user.getAboutMe() != null && user.getAboutMe() != "" ? user.getAboutMe() : "Sin especificar"%></textarea>
+                                        </div>                                        
                                         <div class="margiv-top-10">
-                                            <a href="#" class="btn green">
+                                            <button type="submit" class="btn green">
                                                 Guardar Cambios
-                                            </a>
-                                            <a href="#" class="btn default">
+                                            </button>
+                                            <a href="Controller" class="btn default">
                                                 Cancelar
                                             </a>
                                         </div>
@@ -142,7 +136,7 @@
                                         <div class="form-group">
                                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                                 <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                                    <img src="profileimg/<%=user.getUserId()%>.jpg" class="img-responsive" alt=""/>
+                                                    <img src="<%=getServletContext().getContextPath()%>/profileimg/<%=image%>.jpg" class="img-responsive" alt=""/>
                                                 </div>
                                                 <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;">
                                                 </div>
@@ -165,24 +159,29 @@
                                     </form>
                                 </div>
                                 <div id="tab_3-3" class="tab-pane">
-                                    <form action="#">
+                                    <form action="Controller?action=ChangePassword" method="POST" id="form-password" novalidate="novalidate">
+                                        <div class="alert alert-danger display-hide">
+                                            <button class="close" data-close="alert"></button>
+                                            Faltan datos! Comprueba el formulario.
+                                        </div>
                                         <div class="form-group">
                                             <label class="control-label">Contraseña actual</label>
-                                            <input type="password" class="form-control"/>
+                                            <label id="passwordHidden" style="display:none;"><%=user.getPassword()%></label>
+                                            <input id="oldPassword" name="oldPassword" type="password" class="form-control" required/>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Nueva contraseña</label>
-                                            <input type="password" class="form-control"/>
+                                            <input id="newPassword" name="newPassword" type="password" class="form-control"required/>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Vuelve a escribir la nueva contraseña</label>
-                                            <input type="password" class="form-control"/>
+                                            <input id="newPasswordRepeat" name="newPasswordRepeat" type="password" class="form-control" required/>
                                         </div>
                                         <div class="margin-top-10">
-                                            <a href="#" class="btn green">
+                                            <button type="submit" class="btn green">
                                                 Cambia la Contraseña
-                                            </a>
-                                            <a href="#" class="btn default">
+                                            </button>
+                                            <a href="Controller" class="btn default">
                                                 Cancelar
                                             </a>
                                         </div>

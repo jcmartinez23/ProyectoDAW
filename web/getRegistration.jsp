@@ -1,3 +1,4 @@
+<%@page import="org.jcmg.hibernate.entities.Company"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Set"%>
 <%@page import="org.jcmg.hibernate.entities.NonAttendance"%>
@@ -9,7 +10,8 @@
     <div class="col-md-12">
         <!-- BEGIN PAGE TITLE & BREADCRUMB-->
         <h3 class="page-title">
-            NOMBREMPRESA <small>informe de matriculación</small>
+            <% Company company = (Company) request.getSession().getAttribute("company"); %>
+            <%=company.getName()%> <small>informe de matriculación</small>
         </h3>
         <ul class="page-breadcrumb breadcrumb">
             <li class="btn-group">
@@ -30,7 +32,7 @@
             </li>
             <li>
                 <a href="#">
-                    EMPRESA
+                    <%=company.getName()%>
                 </a>
                 <i class="fa fa-angle-right"></i>
             </li>
@@ -64,7 +66,6 @@
                     </thead>
                     <tbody role="alert" aria-live="polite" aria-relevant="all">
                         <% List<Student> students = (List<Student>) request.getSession().getAttribute("companyStudents");
-
                             for (Student student : students) {
                                 User user = student.getUser();
                         %>
@@ -81,7 +82,6 @@
                             <td class=" ">
                                 <% Set nonAttendances = student.getNonAttendances();
                                     Iterator it = nonAttendances.iterator();
-
                                     int notJustifiedAttendances = 0;
                                     while (it.hasNext()) {
                                         NonAttendance na = (NonAttendance) it.next();

@@ -32,9 +32,7 @@
         <link href="assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
         <link href="assets/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" type="text/css"/>       
         <link href="assets/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
-        <link href="assets/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
-        <link href="assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"/>        
-        <!-- BEGIN BOOTSTRAP THEME STYLES -->
+        <link href="assets/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>        
         <link href="assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
         <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
         <link href="assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
@@ -129,7 +127,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="extra_profile.html">
+                                <a href="Controller">
                                     <i class="fa fa-user"></i> Mi Perfil
                                 </a>
                             </li>
@@ -222,7 +220,7 @@
         <script src="assets/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>        
         <script type="text/javascript" src="assets/plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>                
         <script type="text/javascript" src="assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
-        <script type="text/javascript" src="assets/plugins/jquery-validation/dist/additional-methods.min.js"></script>
+        <script type="text/javascript" src="assets/plugins/jquery-validation/dist/additional-methods.js"></script>
         <script src="assets/plugins/jquery-validation/localization/messages_es.js" type="text/javascript"></script>
         <script type="text/javascript" src="assets/plugins/select2/select2.min.js"></script>      
         <script type="text/javascript" src="assets/plugins/data-tables/jquery.dataTables.min.js"></script>
